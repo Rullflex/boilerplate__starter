@@ -13,7 +13,7 @@ node_modules/
 reports/
 
 # Папка с собранными файлами проекта
-build assets/
+# build assets/
 build/
 .editorconfig
 .eslintignore
