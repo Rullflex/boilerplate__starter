@@ -13,12 +13,12 @@ node_modules/
 reports/
 
 # Папка с собранными файлами проекта
-# build assets/
+build assets/
 build/
-# .editorconfig
-# .eslintignore
-# .eslintrc.json
+.editorconfig
+.eslintignore
+.eslintrc.json
 # .gitattributes
 # .gitignore
-# .pug-lint.json
-# .stylelintrc.json
+.pug-lint.json
+.stylelintrc.json
