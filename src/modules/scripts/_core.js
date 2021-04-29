@@ -27,13 +27,17 @@ class App {
         </div>`
     }
 
+
     init() {
         // FORM
         const form = new Form()
         form.init()
         
-
+        const quiz = new Quiz()
+        quiz.create()
     }
+
+
 
     // plural(number, ['год', 'года', 'лет'])
     plural(number, titles) {
@@ -41,19 +45,7 @@ class App {
         return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]]
     }
 
-    // параллакс на элемент, должен иметь класс и data-parallax-k="10xx"
-    mouseMove(mouseMoveItemSelector = '.mouse-parallax') {
-
-        window.addEventListener('mousemove', function(e) {
-            let x = e.clientX / window.innerWidth
-            let y = e.clientY / window.innerHeight
-            document.querySelectorAll(mouseMoveItemSelector).forEach(e => {
-                e.style.transform = `translate(${-x * e.getAttribute('data-parallax-k')}px, ${-y * e.getAttribute('data-parallax-k')}px)`
-            })
-        })
-    }
-
-    matchMediaListener(breakpoint, callbackLessThan, callbackBiggerThan) {
+    matchMediaListener(breakpoint, callbackLessThan = () => undefined, callbackBiggerThan = () => undefined) {
         const mediaQuery = window.matchMedia(`(min-width: ${breakpoint}px)`)
         function handleBreakpointCross(e) {
             // Check if the media query is true
@@ -64,10 +56,15 @@ class App {
             }
         }
         // Register event listener
-        mediaQuery.addListener(handleBreakpointCross)
+        mediaQuery.addEventListener('change', handleBreakpointCross)
 
         // Initial check
         handleBreakpointCross(mediaQuery)
+    }
+
+    // возвр. индекс элемента в сете
+    getItemIndex(el, set) {
+        return [...set].indexOf(el)
     }
 
     // меняют класс акстивности в сетах
@@ -75,17 +72,24 @@ class App {
         set.forEach(e => e.classList.remove(activeClass))
         set[index].classList.add(activeClass)
     }
-    
+    // 
     changeActivityElement(el, activeClass = `active`) {
-        el.parentElement.childNodes.forEach(e => e.classList.remove(activeClass))
-        el.parentElement.children[this.showIndex(el, el.parentElement.children)].classList.add(activeClass)
+        const set = [...el.parentElement.children]
+        set.forEach(e => e.classList.remove(activeClass))
+        set[this.getItemIndex(el, set)].classList.add(activeClass)
     }
 
-    // возвр. индекс элемента в сете
-    getIndexOfElements(el, set) {
-        return [...set].indexOf(el)
+    // все потомки первого уровня для списка будут менять активность по клику
+    letListClickActive(listElement, activeClass = `active`) {
+        listElement.addEventListener( 'click', ev => {
+            const path = ev.path
+            if (path[0] !== listElement) {
+                const listIndex = path.findIndex(el => el === listElement)
+                this.changeActivityElement(path[listIndex - 1], activeClass)
+            } 
+        })
     }
-    
+
     // при любом изменении слайда возвращает его индекс в CB функцию
     sliderSpy(slider, callback = (index) => {}) {
         document.querySelectorAll(`${slider} .uk-slider-items > li`).forEach((el, idx) => {
@@ -113,6 +117,18 @@ class App {
         $mapWrapper.addEventListener(`inview`, (event) => {
             $mapWrapper.insertAdjacentHTML(`beforeend`, this.loaderHtml)
             $mapWrapper.insertAdjacentHTML(`beforeend`, `<iframe src="${mapSrc}" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`)
+        })
+    }
+    
+    // параллакс на элемент, должен иметь класс и data-parallax-k="10xx"
+    mouseMove(mouseMoveItemSelector = '.mouse-parallax') {
+
+        window.addEventListener('mousemove', function(e) {
+            let x = e.clientX / window.innerWidth
+            let y = e.clientY / window.innerHeight
+            document.querySelectorAll(mouseMoveItemSelector).forEach(e => {
+                e.style.transform = `translate(${-x * e.getAttribute('data-parallax-k')}px, ${-y * e.getAttribute('data-parallax-k')}px)`
+            })
         })
     }
 
@@ -224,118 +240,109 @@ class App {
 class Quiz extends App {
     constructor({
         selector,
-        autoMoveDelay = 0,
-        activeClass = `quiz-active`,
-        startSlide = 0
     } = {}) {
         super()
-        this.selector = selector
-        this.autoMoveDelay = autoMoveDelay
-        this.activeClass = activeClass
 
-        this.currentSlide = startSlide
 
-        this.setOfSlides = document.querySelectorAll(`${selector} .quiz-slide`)
-        this.numberOfSlides = this.setOfSlides.length
-        this.lastIndex = this.numberOfSlides - 1
-        this.quiz = document.querySelector(this.selector)
-
+        
     }
 
     create () {
-        this.toSlide(this.currentSlide)
+        // markdown
+        let items = ''
+        document.querySelectorAll(`ul.quiz-items > li`).forEach(() => items += '<li><a href="#"></a></li>')
+        document.querySelector(`ul.quiz-items`).classList.add('uk-switcher')
+        document.querySelector(`ul.quiz-items`).insertAdjacentHTML(
+            'beforebegin', 
+            `<ul class="quiz-switcher d-none">
+                ${items}
+            </ul>`
+        )
+        document.querySelector(`ul.quiz-nav`)?.insertAdjacentHTML('afterbegin', items)
 
-        this.quiz.querySelectorAll(`.quiz-radio`).forEach( (elem, idx, parent) => {
-            elem.addEventListener(`click`, (event) => {
-                const target = event.currentTarget
-                target.closest(`.quiz-radio-wrap`).querySelectorAll(`.quiz-radio`).forEach(e => e.classList.remove(this.activeClass))
-                target.classList.add(this.activeClass)
-                // setTimeout( () => this.toNextSlide(), this.autoMoveDelay)
-                this.toNextSlide()
+
+        // init
+        const $quiz = document.querySelector(`.quiz`),
+            $quizSwitcher = $quiz.querySelector(`.quiz-switcher`),
+            $quizNav = $quiz.querySelector(`ul.quiz-nav`),
+            $quizProgressLine = $quiz.querySelector(`.quiz-progress-line`),
+            $btnsPrev = $quiz.querySelectorAll('.quiz-prev'),
+            $btnsNext = $quiz.querySelectorAll('.quiz-next'),
+
+            $itemSet = $quiz.querySelectorAll(`ul.quiz-items > li`),
+            $formValues = $quiz.querySelector(`.quiz-form-values`)
+
+
+        UIkit.switcher($quizSwitcher, {
+            animation: 'uk-animation-slide-right-small, uk-animation-slide-left-small',
+            swiping: false,
+        })
+
+        // BTNS
+        $btnsPrev?.forEach(el => {
+            el.addEventListener('click', ev => {
+                ev.preventDefault()
+                UIkit.switcher($quizSwitcher).show('previous')
+            })
+        })
+        $btnsNext?.forEach(el => {
+            el.addEventListener('click', ev => {
+                ev.preventDefault()
+                UIkit.switcher($quizSwitcher).show('next')
             })
         })
 
-        // bind action on buttons prev/next
-        this.quiz.querySelector(`.quiz-btn-prev`).addEventListener(`click`, ev => {
-            this.toPrevSlide()
+        // NAV
+        $quizNav?.querySelectorAll(`a`).forEach((el, idx, set) => {
+            el.addEventListener('click', ev => {
+                ev.preventDefault()
+                this.changeActivitySet($quizNav.querySelectorAll(`li`), idx, 'quiz-active')
+                UIkit.switcher($quizSwitcher).show(idx)
+            })
         })
-        this.quiz.querySelector(`.quiz-btn-next`).addEventListener(`click`, ev => {
-            this.toNextSlide()
-        })
-        
-    }
 
-    refreshValues() {
-        this.quiz.querySelector(`.quiz-progress-bar`).style.cssText = `width: ${100 / (this.numberOfSlides - 1) * this.currentSlide}%`
-        this.quiz.querySelector(`.quiz-progress-num`).innerText = this.currentSlide + 1
+        $itemSet.forEach((el, key, set) => {
+            el.addEventListener('beforeshow', ev => {
 
-        if (this.currentSlide === this.lastIndex) {
-            // финальный слайд
-            this.onFinalSlideShow()
-            this.quiz.querySelectorAll(`.quiz-final-hide`).forEach(el => el.classList.add(`hidden`))
-            this.quiz.querySelectorAll(`.quiz-final-show`).forEach(el => el.classList.remove(`hidden`))
+                const currentIndex = this.getItemIndex(el, set)
 
-            if (window.innerWidth < this.lg) {
-                //изменение высот
-                // this.quiz.querySelector(`.quiz-slide-wrap`).style.cssText = `height: 27rem`
-            }
-            
-        } else {
-            // остальные слайды
-            this.quiz.querySelectorAll(`.quiz-final-hide`).forEach(el => el.classList.remove(`hidden`))
-            this.quiz.querySelectorAll(`.quiz-final-show`).forEach(el => el.classList.add(`hidden`))
+                // PROGRESS BAR
+                if ($quizProgressLine) {
+                    
+                    $quizProgressLine.style.width = `${100 / ($itemSet.length - 1) * currentIndex}%`
+                }
 
-            if (window.innerWidth < this.lg) {
-                //изменение высот
-                // this.quiz.querySelector(`.quiz-slide-wrap`).style.cssText = `
-                // height: ${this.quiz.querySelector(`.quiz-slide.${this.activeClass} .quiz-radio-wrap`).clientHeight + this.quiz.querySelector(`.quiz-slide.${this.activeClass} h3`).clientHeight + 30}px`
-            }
-            
-        }
-        
-    }
+                if (currentIndex === 0) {
+                    // $btnPrev[1].classList.add('uk-disabled')
+                } else {
+                    // $btnPrev[1].classList.remove('uk-disabled')
+                }
+                
+                if (currentIndex === set.length - 1) {
 
-    toNextSlide() {
-        if (this.currentSlide < this.lastIndex) {
-            this.toSlide(this.currentSlide + 1)
-        } else {
-            console.error(`Error in Quiz.toNextSlide(): last slide cannot be passed`)
-        }
-        
-    }
+                    // //сбор ответов
+                    // $formValues.innerHTML = ''
+                    // let appendInput = (name, value) => {
+                    //     let input = document.createElement('input')
+                    //     input.type = 'hidden'
+                    //     input.value = value
+                    //     input.name = name
+                    //     $formValues.append(input)
+                    // }
+                    // $itemSet.forEach((el, key, set) => {
+                    //     const name = el.querySelector('.calc__title').innerText
+                    //     if (el.querySelector('.calc__input')) {
+                    //         appendInput(name, el.querySelector('.calc__input')?.value)
+                    //     } else if (el.querySelector('.calc__radio.active')) {
+                    //         appendInput(name, el.querySelector('.calc__radio.active')?.innerText)
+                    //     }
+                    // })
 
-    toPrevSlide() {
-        if (this.currentSlide > 0) {
-            this.toSlide(this.currentSlide - 1)
-        } else {
-            console.error(`Error in Quiz.toPrevSlide(): first slide cannot be passed`)
-        }
-    }
-
-    toSlide(position) {
-        if (position >= 0 && position <= this.lastIndex) {
-            this.setOfSlides[this.currentSlide].classList.remove(this.activeClass)
-            this.currentSlide = position
-            this.setOfSlides[this.currentSlide].classList.add(this.activeClass)
-
-            this.refreshValues()
-        } else {
-            console.error(`Error in Quiz.toSlide(): position is invalid`)
-        }
-    }
-
-    onFinalSlideShow() {
-        this.quiz.querySelector(`form .values`).innerHTML = ``
-        this.quiz.querySelectorAll(`.quiz-slide`).forEach((el) => {
-            let list = []
-            el.querySelectorAll(`.${this.activeClass}`).forEach(e => list.push(e.getAttribute("data-value")))
-            this.quiz.querySelector(`form .values`).insertAdjacentHTML('beforeend', `<input type="hidden" name="${el.getAttribute(`data-title`)}" value="${list.join(`, `)}">`)
+                } else {
+                }
+            })
         })
         
-    }
-
-    reset() {
-        this.toSlide(0)
     }
 
 

@@ -64,6 +64,33 @@ mixin slideshow-thumbnav(length, imgSrc = `${assets}slider-thumb-img-`)
 						+picture(jpg, `${imgSrc}${i + 1}`, 'n')
 
 
+mixin quiz 
+	.quiz 
+
+		h1.title TITLE
+
+		ul.quiz-items 
+			li
+				h2 item 1
+				ul.quiz-radios
+					li
+					li
+					li
+
+			li
+				h2 item 2
+				ul.quiz-options
+					li
+					li
+					li
+			li
+				h2 item 3
+				input.quiz-input
+		ul.quiz-nav 
+		a.quiz-prev(href="#") PREV
+		a.quiz-next(href="#") NEXT
+		.quiz-progress
+			.quiz-progress-line
 
 //- ICONSET
 
