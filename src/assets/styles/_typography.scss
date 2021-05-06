@@ -8,7 +8,7 @@ $relative-link-to-modules: "../../modules/fonts";
 
 @include font-face("F", "F-Light", "300", "normal", $relative-link-to-modules);
 
-@include font-face("F", "F", "400", "normal");
+@include font-face("F", "F", "400", "normal", $relative-link-to-modules);
 @include font-face("F", "F-Normal", "400", "normal", $relative-link-to-modules);
 @include font-face("F", "F-Regular", "400", "normal", $relative-link-to-modules);
 

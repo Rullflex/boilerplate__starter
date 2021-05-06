@@ -16,7 +16,7 @@ class App {
         this.md = 768
         this.lg = 1280
 
-        this._apiBase = '/api/';  
+        this.apiSrc = '/api/';  
 
         this.loaderHtml = `
         <div class="loader-wrap">
@@ -33,8 +33,12 @@ class App {
         const form = new Form()
         form.init()
         
-        const quiz = new Quiz()
-        quiz.create()
+        // const quiz = new Quiz()
+        // quiz.create()
+
+        this.dynamicVideo()
+
+
     }
 
 
@@ -119,6 +123,38 @@ class App {
             $mapWrapper.insertAdjacentHTML(`beforeend`, `<iframe src="${mapSrc}" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`)
         })
     }
+
+    dynamicVideo(toggleSelector = '[data-app-video]') {
+        document.querySelectorAll(toggleSelector)?.forEach(el => {
+            el.addEventListener('click', ev => {
+                ev.preventDefault()
+
+                const id = el.getAttribute('href'),
+                      hash = el.getAttribute('href').slice(1),
+                      ythash = hash.startsWith('_') ? hash.slice(1) : hash
+                
+
+                document.querySelector(`.app-wrapper`).insertAdjacentHTML(
+                    'beforeend',
+                    `<div class="popup-video popup uk-flex-top uk-modal" id="${hash}">
+                        <div class="popup__body uk-modal-dialog uk-modal-body uk-margin-auto-vertical embed-responsive embed-responsive-16by9">
+                            <button class="popup__close uk-modal-close-default uk-icon uk-close" type="button" data-uk-close="data-uk-close"></button>
+                        </div>
+                    </div>`
+                )
+                this.videoSpy(`${id} .popup__body`, ythash)
+                 
+                UIkit.modal(id)
+                setTimeout(() => UIkit.modal(id).show(), 100)
+    
+                el.addEventListener('click', ev => {
+                    ev.preventDefault()
+                    UIkit.modal(id).show()
+                })
+            }, {once: true})
+        })
+    }
+
     
     // параллакс на элемент, должен иметь класс и data-parallax-k="10xx"
     mouseMove(mouseMoveItemSelector = '.mouse-parallax') {
@@ -349,15 +385,36 @@ class Quiz extends App {
 }
 
 class Form extends App {
-    constructor() {
+    constructor({
+        clsError = `has-error`,
+        clsSuccess = `has-success`,
+        messages = `.messages`,
+        inputWrap = `.input-wrap`,
+        disableMessages = true,
+        removeErrorOnFocus = true,
+    } = {}) {
         super()
-        this.selectorMessages = `.messages`
-        this.classHasError = `has-error`
-        this.classHasSuccess = `has-success`
-        this.formInput = `.input-wrap`
-        this.disableIMask = false,
-        this.disableMessages = true,
-        this.removeErrorOnFocus = true,
+        this.messages = messages
+        this.clsError = clsError
+        this.clsSuccess = clsSuccess
+        this.formInput = inputWrap
+        this.disableMessages = disableMessages
+        this.removeErrorOnFocus = removeErrorOnFocus
+
+
+        // --- validation ---
+
+        validate.validators.isMaskComplete = (value, options, key, attributes) => {
+            if (options) {
+                if (this.PhoneMask().checkCompleteness(value)) {
+                    return null
+                } else {
+                    return false
+                }
+            } else {
+                return null
+            }
+        }
         this.constraints = {
             email: {
               // Email is required
@@ -438,45 +495,15 @@ class Form extends App {
         }
     }
 
-    init(form = `form`) {
-        validate.validators.isMaskComplete = (value, options, key, attributes) => {
-            if (key == "Телефон" && options == true && value != null) {
-                if (this.PhoneMask().checkCompleteness(value)) {
-                    return null
-                } else {
-                    return "не корректен"
-                }
-            } else {
-                return null
-            }
-        };
-
-        this.disableIMask || this.phoneMask(form)
-
-        // Hook up the form so we can prevent it from being posted
-        document.querySelectorAll(form).forEach(el => {
-            el.addEventListener(`submit`, ev => {
-                ev.preventDefault();
-                this.handleFormSubmit(el)
-            });
-        });
-
-        // Hook up the inputs to validate on the fly
-        document.querySelectorAll(`${form} input, ${form} textarea, ${form} select`).forEach((el) => {
-            el.addEventListener("change", ev => {
-
-                const target = ev.target
-                const currentForm = target.closest(form)
-                const errors = validate(currentForm, this.formConstraints(currentForm)) || {}
-                this.showErrorsForInput(target, errors[target.name])
-            });
-            if (this.removeErrorOnFocus) {
-                el.addEventListener('focus', ev => {
-                    ev.target.closest(this.formInput).classList.remove(this.classHasError)
-                });
-            }
-        })
-
+    init({
+        form = `form`, 
+        onSuccess = (form) => this.showSuccess(form), 
+        onError = (form, errors) => this.showErrors(form, errors || {}
+    )} = {}) {
+        console.dir(document.querySelector(form))
+        this.validateSubmit(form, onSuccess, onError)
+        this.validateChange(form)
+        this.phoneMask(form)
     }
 
 
@@ -486,15 +513,39 @@ class Form extends App {
         })
     }
 
-    handleFormSubmit(form, input) {
-        // validate the form against the constraints
-        
-        let errors = validate(form, this.formConstraints(form));
-        // then we update the form to reflect the results
-        this.showErrors(form, errors || {});
-        if (!errors) {
-            this.showSuccess(form);
-        }
+    // Hook up the form so we can prevent it from being posted
+    validateSubmit(form, onSuccess = (form) => this.showSuccess(form), onError = (form, errors) => this.showErrors(form, errors || {})) {
+        document.querySelectorAll(form).forEach(el => {
+            el.addEventListener(`submit`, ev => {
+                ev.preventDefault()
+
+                // validate the form against the constraints
+                let errors = validate(document.querySelector(`form`), this.formConstraints(el))
+
+                if (errors) {
+                    onError(form, errors)
+                } else {
+                    onSuccess(el)
+                }
+            })
+        })
+    }
+
+    // Hook up the inputs to validate on the fly
+    validateChange(form) {
+        document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach((el) => {
+            el.addEventListener("change", ev => {
+                const currentForm = el.closest(form)
+                const errors = validate(currentForm, this.formConstraints(form)) || {}
+                
+                this.showErrorsForInput(el, errors[el.name])
+            })
+            if (this.removeErrorOnFocus) {
+                el.addEventListener('focus', ev => {
+                    el.closest(this.formInput).classList.remove(this.clsError)
+                })
+            }
+        })
     }
 
     // Updates the inputs with the validation errors
@@ -502,7 +553,7 @@ class Form extends App {
         // We loop through all the inputs and show the errors for that input
           // Since the errors can be null if no errors were found we need to handle
           // that
-        form.querySelectorAll("input[name], select[name], textarea[name]").forEach(input => this.showErrorsForInput(input, errors && errors[input.name]))
+          document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(input => this.showErrorsForInput(input, errors && errors[input.name]))
     }
 
       // Shows the errors for a specific input
@@ -513,57 +564,54 @@ class Form extends App {
         let messages = null
         if (formGroup != null) {
             if (!this.disableMessages) {
-                messages = formGroup.querySelector(this.selectorMessages)
+                messages = formGroup.querySelector(this.messages)
             }
             // First we remove any old messages and resets the classes
             this.resetFormGroup(formGroup);
             // If we have errors
             if (errors) {
               // we first mark the group has having errors
-              formGroup.classList.add(this.classHasError);
+              formGroup.classList.add(this.clsError);
               // then we append all the errors
               errors.forEach(error => this.addError(error, messages))
             } else {
               // otherwise we simply mark it as success
-              formGroup.classList.add(this.classHasSuccess);
+              formGroup.classList.add(this.clsSuccess);
             }
         }
     }
 
     
-
+    
+    // Remove the success and error classes and remove any old messages
     resetFormGroup(formGroup) {
-        // Remove the success and error classes
-        formGroup.classList.remove(this.classHasError);
-        formGroup.classList.remove(this.classHasSuccess);
-        // and remove any old messages
+        formGroup.classList.remove(this.clsError);
+        formGroup.classList.remove(this.clsSuccess);
         formGroup.querySelectorAll(".help-block.error").forEach(el => el.parentNode.removeChild(el))
     }
 
-      // Adds the specified error with the following markup
-      // <p class="help-block error">[message]</p>
-    addError(error, messages) {
-        const block = document.createElement("p");
-        block.classList.add("help-block");
-        block.classList.add("error");
-        block.innerText = error;
+    // Adds the specified error with the following markup
+    // <p class="help-block error">[message]</p>
+    addError(errorText, messages = null) {
         if (!this.disableMessages && messages != null) {
+            const block = document.createElement("p")
+            block.classList.add("help-block")
+            block.classList.add("error")
+            block.innerText = errorText
             messages.appendChild(block);
         }
-        
     }
 
     showSuccess(form) {
-        const formData = new FormData(form)
-        
-        // if (form.classList.contains(`form-quiz`)) {
-        //     ym(71270149,'reachGoal','quiz')
-        // } else {
-        //     ym(71270149,'reachGoal','form')
-        // }
+        // ym(71270149,'reachGoal','form')
         UIkit.modal(`#thanks`).show();
+        this.sendFormData(form)
+    }
 
-        fetch(`${this._apiBase}mail.php`, {
+    sendFormData(form, phpSrc = `${this.apiSrc}mail.php`) {
+        const formData = new FormData(document.querySelector(`form`))
+
+        fetch(phpSrc, {
             method: 'post',
             body: formData,
             mode: 'no-cors'
@@ -579,11 +627,10 @@ class Form extends App {
 
     formConstraints(form) {
         let localConstraints = {}
-        form.querySelectorAll(`input[name], select[name], textarea[name]`).forEach(e => {
+        document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(e => {
             if (this.constraints[e.name] != undefined) {
                 localConstraints[e.name] = this.constraints[e.name]
             }
-            
         })
         return localConstraints
     }
