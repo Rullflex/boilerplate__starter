@@ -4,6 +4,7 @@ const webpack = require('webpack-stream')
 var named = require('vinyl-named-with-path')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const eslint = require('gulp-eslint')
 
 module.exports = function script() {
@@ -33,7 +34,8 @@ module.exports = function script() {
       },
       plugins: [
         new CircularDependencyPlugin(),
-        new DuplicatePackageCheckerPlugin()
+        new DuplicatePackageCheckerPlugin(),
+        new UglifyJSPlugin()
       ]
     }))
     .pipe(gulp.dest('build/'))

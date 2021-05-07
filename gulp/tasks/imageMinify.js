@@ -3,7 +3,18 @@ const imagemin = require('gulp-imagemin')
 const webp = require('gulp-webp')
 
 module.exports = function imageMinify() {
-  return gulp.src(["src/**/*.{gif,png,jpg,svg,webp}", "!src/**/_*.{gif,png,jpg,svg,webp}"])
+  if (process.env.NODE_ENV === 'development') {
+    return gulp.src(["src/**/*.{gif,png,jpg,svg,webp}", "!src/**/_*.{gif,png,jpg,svg,webp}"])
+    .pipe(
+      webp({
+        quality: 100
+      })
+    )
+    .pipe(gulp.dest('build/'))
+    .pipe(gulp.src(["src/**/*.{gif,png,jpg,svg,webp}", "!src/**/_*.{gif,png,jpg,svg,webp}"]))
+    .pipe(gulp.dest('build/'))
+  } else {
+    return gulp.src(["src/**/*.{gif,png,jpg,svg,webp}", "!src/**/_*.{gif,png,jpg,svg,webp}"])
     .pipe(
       webp({
         quality: 90
@@ -21,10 +32,12 @@ module.exports = function imageMinify() {
       imagemin.svgo({
         plugins: [
           { removeViewBox: true },
-          { cleanupIDs: false }
+          { cleanupIDs: true }
         ]
       })
     ]))
     .pipe(gulp.dest('build/'))
+  }
+  
 }
 

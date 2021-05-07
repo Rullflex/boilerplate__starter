@@ -1,0 +1,47 @@
+mixin slider-dotnav
+	ul.dotnav.uk-slider-nav&attributes(attributes)
+
+mixin slideshow-dotnav
+	ul.dotnav.uk-slideshow-nav&attributes(attributes)
+
+
+mixin slider-slidenav
+	ul.slidenav&attributes(attributes)
+		li.slidenav__item(data-uk-slider-item="previous")
+			a.slidenav__link.slidenav__link--prev(href="#")
+				+icon('angle-left').slidenav__icon
+		li.slidenav__item(data-uk-slider-item="next")
+			a.slidenav__link.slidenav__link--next(href="#")
+				+icon('angle-right').slidenav__icon
+
+mixin slideshow-slidenav
+	ul.slidenav&attributes(attributes)
+		li.slidenav__item(data-uk-slideshow-item="previous")
+			a.slidenav__link.slidenav__link--prev(href="#")
+				+icon('angle-left').slidenav__icon
+		li.slidenav__item(data-uk-slideshow-item="next")
+			a.slidenav__link.slidenav__link--next(href="#")
+				+icon('angle-right').slidenav__icon
+
+
+
+mixin slider-thumbnav(length, imgSrc = `${assets}slider-thumb-img-`)
+	ul.thumbnav&attributes(attributes)
+		if block 
+			block 
+		else
+			- for (var i = 0; i < length; i++)
+				li.thumbnav__item(data-uk-slider-item=i)
+					a.thumbnav__link.ibg(href="#")
+						+picture(jpg, `${imgSrc}${i + 1}`, 'n')
+
+mixin slideshow-thumbnav(length, imgSrc = `${assets}slider-thumb-img-`)
+	ul.thumbnav&attributes(attributes)
+		if block 
+			block 
+		else
+			- for (var i = 0; i < length; i++)
+				li.thumbnav__item(data-uk-slideshow-item=i)
+					a.thumbnav__link.ibg(href="#")
+						+picture(jpg, `${imgSrc}${i + 1}`, 'n')
+

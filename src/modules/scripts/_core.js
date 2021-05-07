@@ -28,19 +28,7 @@ class App {
     }
 
 
-    init() {
-        // FORM
-        const form = new Form()
-        form.init()
-        
-        // const quiz = new Quiz()
-        // quiz.create()
-
-        this.dynamicVideo()
-
-
-    }
-
+    init() {}
 
 
     // plural(number, ['год', 'года', 'лет'])
@@ -301,7 +289,7 @@ class Quiz extends App {
         const $quiz = document.querySelector(`.quiz`),
             $quizSwitcher = $quiz.querySelector(`.quiz-switcher`),
             $quizNav = $quiz.querySelector(`ul.quiz-nav`),
-            $quizProgressLine = $quiz.querySelector(`.quiz-progress-line`),
+            $quizProgress = $quiz.querySelector(`.quiz-progresse`),
             $btnsPrev = $quiz.querySelectorAll('.quiz-prev'),
             $btnsNext = $quiz.querySelectorAll('.quiz-next'),
 
@@ -343,9 +331,8 @@ class Quiz extends App {
                 const currentIndex = this.getItemIndex(el, set)
 
                 // PROGRESS BAR
-                if ($quizProgressLine) {
-                    
-                    $quizProgressLine.style.width = `${100 / ($itemSet.length - 1) * currentIndex}%`
+                if ($quizProgress) {
+                    $quizProgress.value = `${100 / ($itemSet.length - 1) * currentIndex}`
                 }
 
                 if (currentIndex === 0) {
@@ -500,7 +487,6 @@ class Form extends App {
         onSuccess = (form) => this.showSuccess(form), 
         onError = (form, errors) => this.showErrors(form, errors || {}
     )} = {}) {
-        console.dir(document.querySelector(form))
         this.validateSubmit(form, onSuccess, onError)
         this.validateChange(form)
         this.phoneMask(form)
@@ -515,17 +501,17 @@ class Form extends App {
 
     // Hook up the form so we can prevent it from being posted
     validateSubmit(form, onSuccess = (form) => this.showSuccess(form), onError = (form, errors) => this.showErrors(form, errors || {})) {
-        document.querySelectorAll(form).forEach(el => {
-            el.addEventListener(`submit`, ev => {
+        document.querySelectorAll(form).forEach(currentForm => {
+            currentForm.addEventListener(`submit`, ev => {
                 ev.preventDefault()
 
                 // validate the form against the constraints
-                let errors = validate(document.querySelector(`form`), this.formConstraints(el))
+                let errors = validate(currentForm, this.formConstraints(currentForm))
 
                 if (errors) {
-                    onError(form, errors)
+                    onError(currentForm, errors)
                 } else {
-                    onSuccess(el)
+                    onSuccess(currentForm)
                 }
             })
         })
@@ -551,9 +537,15 @@ class Form extends App {
     // Updates the inputs with the validation errors
     showErrors(form, errors) {
         // We loop through all the inputs and show the errors for that input
-          // Since the errors can be null if no errors were found we need to handle
-          // that
-          document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(input => this.showErrorsForInput(input, errors && errors[input.name]))
+        // Since the errors can be null if no errors were found we need to handle
+        // that
+        if (UIkit.util.isNode(form)) {
+            form.querySelectorAll(`input[name], textarea[name], select[name]`).forEach(input => this.showErrorsForInput(input, errors && errors[input.name]))
+        } else {
+            document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(input => this.showErrorsForInput(input, errors && errors[input.name]))
+        }
+         
+          
     }
 
       // Shows the errors for a specific input
@@ -604,12 +596,14 @@ class Form extends App {
 
     showSuccess(form) {
         // ym(71270149,'reachGoal','form')
-        UIkit.modal(`#thanks`).show();
+        // UIkit.modal(`#thanks`).show();
+        
         this.sendFormData(form)
+        setTimeout( 'location="https://romangordin.ru/thanks/index.html";', 500 )
     }
 
     sendFormData(form, phpSrc = `${this.apiSrc}mail.php`) {
-        const formData = new FormData(document.querySelector(`form`))
+        const formData = new FormData(typeof(form) == 'string' ? document.querySelector(form) : form)
 
         fetch(phpSrc, {
             method: 'post',
@@ -627,11 +621,19 @@ class Form extends App {
 
     formConstraints(form) {
         let localConstraints = {}
-        document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(e => {
-            if (this.constraints[e.name] != undefined) {
-                localConstraints[e.name] = this.constraints[e.name]
-            }
-        })
+        if (UIkit.util.isNode(form)) {
+            form.querySelectorAll(`input[name], textarea[name], select[name]`).forEach(e => {
+                if (this.constraints[e.name] != undefined) {
+                    localConstraints[e.name] = this.constraints[e.name]
+                }
+            })
+        } else {
+            document.querySelectorAll(`${form} input[name], ${form} textarea[name], ${form} select[name]`).forEach(e => {
+                if (this.constraints[e.name] != undefined) {
+                    localConstraints[e.name] = this.constraints[e.name]
+                }
+            })
+        }
         return localConstraints
     }
     

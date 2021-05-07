@@ -21,8 +21,16 @@
     &:hover {
         text-decoration: none;
     }
+    &:focus {}
+    &:active {}
+    &:focus-visible {}
+    
     &:not(:disabled) {
         cursor: pointer;
+    }
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
     }
 }
 .btn {
