@@ -1,12 +1,10 @@
 import UIkit from 'uikit'
-import { App, Form } from '../../modules/scripts/_core'
+import { app, form } from '../../modules/scripts/_core'
 
 UIkit.util.ready(function() {
-    const app = new App()
     app.init()
     
     // FORM
-    const form = new Form()
     form.init('form')
    
 
