@@ -1,2 +1,41 @@
+.popup {
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+
+    &__body {
+        padding: 0;
+    }
+
+    &__close {
+        svg {
+            width: 1rem;
+        }
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+    .popup {
+        &__close {
+            right: 1rem;
+            top: 1rem;
+
+            svg {
+                width: 1.5rem;
+            }
+        }
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+    .popup {
+        &__close {
+            &:hover {
+                color: link-hover($primary);
+            }
+        }
+    }
+}
+
 @import 'popups/callback';
-@import 'popups/thanks'
+@import 'popups/thanks';

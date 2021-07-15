@@ -16,7 +16,6 @@
     }
 }
 
-
 :-moz-placeholder {
     color: $placeholder;
     font-weight: normal;
@@ -62,9 +61,9 @@ body {
     position: relative;
     padding: 0;
     margin: 0;
-
     overflow-x: hidden;
     backface-visibility: hidden;
+
     @include bg($body-bg);
 
     font-size: $font-size-base;
@@ -73,7 +72,6 @@ body {
     line-height: $line-height-base;
     color: $body-color;
     text-align: $body-text-align;
-
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(black, 0);
     -webkit-font-smoothing: antialiased;
@@ -92,7 +90,6 @@ body {
     width: 100%;
     min-height: 100%;
     overflow: hidden;
-    &.loaded {}
 }
 
 input,
@@ -111,10 +108,9 @@ select {
     text-transform: none;
 }
 
-
-input [type="text"],
-input [type="email"],
-input [type="tel"],
+input [type='text'],
+input [type='email'],
+input [type='tel'],
 textarea {
     appearance: none;
 }
@@ -127,17 +123,18 @@ button {
 a {
     text-decoration: none;
     color: inherit;
+
     &:disabled {
         cursor: not-allowed;
         pointer-events: none;
         opacity: $disabled-opacity;
     }
-    &.link {
 
+    &.link {
         color: $link-color;
         text-decoration: $link-decoration;
         transition: $transition--hover;
-    
+
         &:hover {
             color: $link-hover-color;
             text-decoration: $link-hover-decoration;
@@ -179,7 +176,6 @@ textarea {
     }
 }
 
-
 ul,
 ol {
     list-style-type: none;
@@ -192,7 +188,6 @@ section {
     position: relative;
 }
 
-
 // Bootstrap Reboot
 //
 // Normalization of HTML elements, manually forked from Normalize.css to remove
@@ -202,13 +197,11 @@ section {
 //
 // Некотороые значения изменены мною или удалены
 
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
 
 // Future-proof rule: in browsers that support :focus-visible, suppress the focus outline
 // on elements that programmatically receive focus but wouldn't normally show a visible
@@ -219,27 +212,29 @@ section {
 // See https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
 // and https://developer.paciellogroup.com/blog/2018/03/focus-visible-and-backwards-compatibility/
 
-[tabindex="-1"]:focus:not(:focus-visible) {
+[tabindex='-1']:focus:not(:focus-visible) {
     outline: 0 !important;
 }
-
 
 hr {
     border: 0;
 }
 
-
-p, h1, h2, h3 ,h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
-
 
 abbr[title] {
     border-bottom: none; /* 1 */
     text-decoration: underline; /* 2 */
     text-decoration: underline dotted; /* 2 */
 }
-
 
 // Address
 
@@ -249,13 +244,11 @@ address {
     line-height: inherit;
 }
 
-
 // Blockquote
 
 blockquote {
     margin: 0 0 1rem;
 }
-
 
 // Strong
 //
@@ -266,7 +259,6 @@ strong {
     font-weight: 700;
 }
 
-
 // Small
 //
 // Add the correct font size in all browsers
@@ -274,7 +266,6 @@ strong {
 small {
     font-size: $small-font-size;
 }
-
 
 // Sub and Sup
 //
@@ -296,7 +287,6 @@ sub {
 sup {
     top: -0.5em;
 }
-
 
 pre,
 code,
@@ -326,7 +316,6 @@ pre {
     }
 }
 
-
 // Figures
 //
 // Apply a consistent margin strategy (matches our type styles).
@@ -335,7 +324,6 @@ figure {
     margin: 0 0 1rem;
 }
 
-
 // Images and content
 
 img,
@@ -343,7 +331,6 @@ svg {
     vertical-align: middle;
     height: auto;
 }
-
 
 // Tables
 //
@@ -374,7 +361,6 @@ th {
     border-width: 0;
 }
 
-
 // Forms
 //
 // 1. Allow labels to use `margin` for spacing.
@@ -386,11 +372,10 @@ label {
 // Remove the default `border-radius` that macOS Chrome adds.
 // See https://github.com/twbs/bootstrap/issues/24093
 
-
 // Set the cursor for non-`<button>` buttons
 //
 // Details at https://github.com/twbs/bootstrap/pull/30562
-[role="button"] {
+[role='button'] {
     cursor: pointer;
 }
 
@@ -435,14 +420,12 @@ textarea {
     resize: none; // 2
 }
 
-
 fieldset {
     min-width: 0;
     padding: 0;
     margin: 0;
     border: 0;
 }
-
 
 // Fix height of inputs with a type of datetime-local, date, month, week, or time
 // See https://github.com/twbs/bootstrap/issues/18842
@@ -467,7 +450,7 @@ fieldset {
 //    be added to `.form-control` as it's not specific enough. For details, see
 //    https://github.com/twbs/bootstrap/issues/11586.
 
-[type="search"] {
+[type='search'] {
     outline-offset: -2px; // 1
     -webkit-appearance: textfield; // 2
 }
@@ -483,7 +466,6 @@ fieldset {
 ::-webkit-color-swatch-wrapper {
     padding: 0;
 }
-
 
 // Inherit font family and line height for file input buttons
 
@@ -521,7 +503,6 @@ summary {
     cursor: pointer;
 }
 
-
 // Progress
 //
 // Add the correct vertical alignment in Chrome, Firefox, and Opera.
@@ -529,7 +510,6 @@ summary {
 progress {
     vertical-align: baseline;
 }
-
 
 // Hidden attribute
 //

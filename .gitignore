@@ -2,10 +2,14 @@
 .DS_Store
 Thumbs.db
 
-# Файлы редактора
+# Editor directories and files
 .idea
-*.sublime*
 .vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # Вспомогательные файлы
 *.log*
@@ -15,10 +19,3 @@ reports/
 # Папка с собранными файлами проекта
 build assets/
 build/
-.editorconfig
-.eslintignore
-.eslintrc.json
-# .gitattributes
-# .gitignore
-.pug-lint.json
-.stylelintrc.json

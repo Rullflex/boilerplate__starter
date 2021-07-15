@@ -1,58 +1,52 @@
 // --- Color system ---
 
-$text-light:#ffffff;
-$text-dark:#4E4E4E;
+$text-light: #ffffff;
+$text-dark: #4e4e4e;
 
-$light:   #FCFCFC;
-$dark: #2B3034;
-$muted:   #C5C5C5;
+$light: #fcfcfc;
+$dark: #2b3034;
+$muted: #c5c5c5;
 
-$primary: #2986F3;
+$primary: #2986f3;
 $secondary: $dark;
 
-$success: #60D138;
-$danger: #FF7777;
-$warning: #FF8A00;
+$success: #60d138;
+$danger: #ff7777;
+$warning: #ff8a00;
 $info: #0d6efd;
 
 $placeholder: #dbdbdb;
 
-$blue:    #0d6efd;
-$indigo:  #6610f2;
-$purple:  #6f42c1;
-$pink:    #d63384;
-$red:     #dc3545;
-$orange:  #fd7e14;
-$yellow:  #ffc107;
-$green:   #198754;
-$teal:    #20c997;
-$cyan:    #0dcaf0;
-
-
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
 
 // --- Options ---
 
-$enable-display-utilites:     true;
-$enable-position-utilites:    false;
-$enable-grid-classes:         true;
-$enable-smooth-scroll:        false;
-
+$enable-display-utilites: true;
+$enable-position-utilites: false;
+$enable-grid-classes: true;
+$enable-smooth-scroll: false;
 
 // --- Body ---
 
-
-$body-bg:                     null;
-$body-color:                  $text-dark;
-$body-text-align:             null;
-  
+$body-bg: null;
+$body-color: $text-dark;
+$body-text-align: null;
 
 // --- Links ---
 
-$link-color:                  $blue;
-$link-decoration:             none;
-$link-hover-color:            darken($link-color, 15%);
-$link-hover-decoration:       null;
-
+$link-color: $blue;
+$link-decoration: none;
+$link-hover-color: darken($link-color, 15%);
+$link-hover-decoration: null;
 
 // --- Animations ---
 
@@ -67,54 +61,48 @@ $transition--normal: all 300ms $animation-type;
 $transition--slow: all 400ms $animation-type;
 $transition--very-slow: all 500ms $animation-type;
 
-$transition--hover:           all 250ms $animation-type;
-$transition-base:             all 200ms ease-in-out;
-$transition-fade:             opacity 150ms linear;
-$transition-collapse:         height 350ms ease;
-
+$transition--hover: all 250ms $animation-type;
+$transition-base: all 200ms ease-in-out;
+$transition-fade: opacity 150ms linear;
+$transition-collapse: height 350ms ease;
 
 // --- GRID system ---
 
-// -- Grid breakpoints --
 $grid-breakpoints: (
     xs: 0,
     sm: 420px,
     md: 768px,
-    lg: 1190px
+    lg: 1190px,
 );
-@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
-@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
-
-// -- Grid containers --
-// Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
     sm: 420px,
     md: 480px,
-    lg: 1190px
+    lg: 1190px,
 );
-@include _assert-ascending($container-max-widths, "$container-max-widths");
 
-$grid-columns:                12;
-$grid-gutter-width:           40px;
-$grid-row-columns:            6;
+$grid-columns: 12;
+$grid-gutter-width: 2.5rem;
+$grid-row-columns: 6;
 
-
+@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
+@include _assert-starts-at-zero($grid-breakpoints, '$grid-breakpoints');
+@include _assert-ascending($container-max-widths, '$container-max-widths');
 
 // --- Typography ---
 
-$font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-code: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$font-family-code: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
-$font-size-base:              1rem;
-$line-height-base:            1.5;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
 
-$small-font-size:             0.875em;
-$sub-sup-font-size:           0.75em;
-$code-font-size:              $small-font-size;
-$code-color:                  $pink;
-$pre-color:                   null;
-
+$small-font-size: 0.875em;
+$sub-sup-font-size: 0.75em;
+$code-font-size: $small-font-size;
+$code-color: $pink;
+$pre-color: null;
 
 // --- Utilities ---
 
@@ -123,15 +111,7 @@ $overflows: auto, hidden;
 $positions: static, relative, absolute, fixed, sticky;
 
 $embed-responsive-aspect-ratios: ();
-$embed-responsive-aspect-ratios: join(
-(
-    (21 9),
-    (16 9),
-    (4 3),
-    (1 1),
-  ),
-  $embed-responsive-aspect-ratios
-);
+$embed-responsive-aspect-ratios: join(((21 9), (16 9), (4 3), (1 1)), $embed-responsive-aspect-ratios);
 
 // значение прозрачности для заблоченых ссылок, кнопок, инпутов
 $disabled-opacity: 0.7;

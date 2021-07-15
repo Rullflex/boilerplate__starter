@@ -1,0 +1,11 @@
+mixin popup
+	.popup.uk-modal(data-uk-modal)&attributes(attributes)
+		.popup__body.uk-modal-dialog.uk-margin-auto-vertical
+			button.popup__close.uk-modal-close-default(type="button" data-uk-close)
+			block
+
+mixin popup-16-9
+	.popup-video.popup.uk-modal(data-uk-modal)&attributes(attributes)
+		.popup__body.uk-modal-dialog.uk-margin-auto-vertical.embed-responsive.embed-responsive-16by9
+			button.popup__close.uk-modal-close-default(type="button" data-uk-close)
+			block

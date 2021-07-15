@@ -7,8 +7,10 @@
     flex-direction: column;
     overflow: hidden;
     background: transparent;
+
     @include center-item();
 }
+
 .loader div {
     position: absolute;
     width: 60px;
@@ -17,12 +19,11 @@
     border-top-color: transparent;
     box-sizing: content-box;
     border-radius: 50%;
-
     animation: loader 1s linear infinite;
-
     top: 50px;
     left: 50px;
 }
+
 .loader {
     width: 71px;
     height: 71px;
@@ -30,5 +31,4 @@
     transform: translateZ(0) scale(0.71);
     backface-visibility: hidden;
     transform-origin: 0 0; /* see note above */
-    &-text {}
 }

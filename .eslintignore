@@ -1,5 +1,2 @@
-build
-gulpfiles.js
-
-/gulp
-/src/local_modules
+vue.config.js
+*.d.ts

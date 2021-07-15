@@ -46,6 +46,7 @@ ol.counter {
     position: relative;
     overflow: hidden;
     background: #eeeeee;
+
     img {
         position: absolute;
         width: 100%;
@@ -151,12 +152,13 @@ body.ie {
         @include media-breakpoint-up($breakpoint) {
             $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-        @each $value in $displays {
-            .d#{$infix}-#{$value} { display: $value !important; }
+            @each $value in $displays {
+                .d#{$infix}-#{$value} {
+                    display: $value !important;
+                }
+            }
         }
     }
-    }
-
 
     //
     // Utilities for toggling `display` in print
@@ -173,7 +175,6 @@ body.ie {
 //
 @if $enable-position-utilites {
     @each $breakpoint in map-keys($grid-breakpoints) {
-
         @include media-breakpoint-up($breakpoint) {
             $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
@@ -186,7 +187,6 @@ body.ie {
     }
 }
 
-
 // Credit: Nicolas Gallagher and SUIT CSS.
 
 .embed-responsive {
@@ -195,10 +195,10 @@ body.ie {
     width: 100%;
     padding: 0;
     overflow: hidden;
-  
+
     &::before {
         display: block;
-        content: "";
+        content: '';
     }
 
     .embed-responsive-item,
@@ -231,7 +231,7 @@ body.ie {
     &::after {
         display: block;
         clear: both;
-        content: "";
+        content: '';
     }
 }
 
@@ -253,7 +253,7 @@ body.ie {
         z-index: 1;
         // Just in case `pointer-events: none` is set on a parent
         pointer-events: auto;
-        content: "";
+        content: '';
         // IE10 bugfix, see https://stackoverflow.com/questions/16947967/ie10-hover-pseudo-class-doesnt-work-without-background-color
         background-color: rgba(0, 0, 0, 0);
     }
@@ -261,6 +261,7 @@ body.ie {
 
 .lazymin {
     filter: blur(10px);
+
     &.lazyloaded {
         filter: unset;
     }
