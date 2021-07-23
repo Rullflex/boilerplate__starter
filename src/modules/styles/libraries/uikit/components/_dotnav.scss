@@ -38,15 +38,21 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
 
 .uk-dotnav {
     display: flex;
+
     /* 1 */
     flex-wrap: wrap;
+
     /* 2 */
     margin: 0;
     padding: 0;
     list-style: none;
+
     /* 3 */
     margin-left: (-$dotnav-margin-horizontal);
-    @if(mixin-exists(hook-dotnav)) {@include hook-dotnav();}
+
+    @if (mixin-exists(hook-dotnav)) {
+        @include hook-dotnav();
+    }
 }
 
 /*
@@ -57,6 +63,7 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
 .uk-dotnav > * {
     /* 1 */
     flex: none;
+
     /* 2 */
     padding-left: $dotnav-margin-horizontal;
 }
@@ -77,11 +84,15 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
     height: $dotnav-item-height;
     border-radius: $dotnav-item-border-radius;
     background: $dotnav-item-background;
+
     /* 1 */
     text-indent: 100%;
     overflow: hidden;
     white-space: nowrap;
-    @if(mixin-exists(hook-dotnav-item)) {@include hook-dotnav-item();}
+
+    @if (mixin-exists(hook-dotnav-item)) {
+        @include hook-dotnav-item();
+    }
 }
 
 /* Hover + Focus */
@@ -89,19 +100,28 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
 .uk-dotnav > * > :focus {
     background-color: $dotnav-item-hover-background;
     outline: none;
-    @if(mixin-exists(hook-dotnav-item-hover)) {@include hook-dotnav-item-hover();}
+
+    @if (mixin-exists(hook-dotnav-item-hover)) {
+        @include hook-dotnav-item-hover();
+    }
 }
 
 /* OnClick */
 .uk-dotnav > * > :active {
     background-color: $dotnav-item-onclick-background;
-    @if(mixin-exists(hook-dotnav-item-onclick)) {@include hook-dotnav-item-onclick();}
+
+    @if (mixin-exists(hook-dotnav-item-onclick)) {
+        @include hook-dotnav-item-onclick();
+    }
 }
 
 /* Active */
 .uk-dotnav > .uk-active > * {
     background-color: $dotnav-item-active-background;
-    @if(mixin-exists(hook-dotnav-item-active)) {@include hook-dotnav-item-active();}
+
+    @if (mixin-exists(hook-dotnav-item-active)) {
+        @include hook-dotnav-item-active();
+    }
 }
 
 
@@ -116,6 +136,7 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
 .uk-dotnav-vertical {
     /* 1 */
     flex-direction: column;
+
     /* 2 */
     margin-left: 0;
     margin-top: (-$dotnav-margin-vertical);
@@ -131,7 +152,9 @@ $dotnav-item-active-background:                  rgba($global-color, 0.6) !defau
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-dotnav-misc)) {@include hook-dotnav-misc();}
+@if (mixin-exists(hook-dotnav-misc)) {
+    @include hook-dotnav-misc();
+}
 
 // @mixin hook-dotnav(){}
 // @mixin hook-dotnav-item(){}
@@ -148,7 +171,6 @@ $inverse-dotnav-item-background:                rgba($inverse-global-color, 0.5)
 $inverse-dotnav-item-hover-background:          rgba($inverse-global-color, 0.9) !default;
 $inverse-dotnav-item-onclick-background:        rgba($inverse-global-color, 0.5) !default;
 $inverse-dotnav-item-active-background:         rgba($inverse-global-color, 0.9) !default;
-
 
 
 // @mixin hook-inverse-dotnav-item(){}

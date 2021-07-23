@@ -1,3 +1,16 @@
+mixin Slider({ sliderOptions = '', onlyHTML = false } = {})
+	- if onlyHTML { attributes['data-uk-slider'] = sliderOptions }
+
+	.slider&attributes(attributes)
+		.slider__container.uk-slider-container 
+			ul.slider__items.uk-slider-items 	
+				block
+
+mixin SliderItem
+	li.slider-item&attributes(attributes)
+		.slider-item__content
+			block
+
 mixin slider-dotnav
 	ul.dotnav.uk-slider-nav&attributes(attributes)
 

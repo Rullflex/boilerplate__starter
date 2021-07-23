@@ -1,0 +1,8 @@
+mixin accordion(set = [])
+	ul.accordion(data-uk-accordion)&attributes(attributes)
+		each item in set
+			li.accordion__item 
+				a.accordion__title.uk-accordion-title(href="#")!= item.title
+					+icon('close').accordion__icon-close
+				.accordion__content.uk-accordion-content!= item.content
+					

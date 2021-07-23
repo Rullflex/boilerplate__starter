@@ -41,7 +41,10 @@ $label-danger-color:                             $global-inverse-color !default;
     color: $label-color;
     vertical-align: middle;
     white-space: nowrap;
-    @if(mixin-exists(hook-label)) {@include hook-label();}
+
+    @if (mixin-exists(hook-label)) {
+        @include hook-label();
+    }
 }
 
 
@@ -55,7 +58,10 @@ $label-danger-color:                             $global-inverse-color !default;
 .uk-label-success {
     background-color: $label-success-background;
     color: $label-success-color;
-    @if(mixin-exists(hook-label-success)) {@include hook-label-success();}
+
+    @if (mixin-exists(hook-label-success)) {
+        @include hook-label-success();
+    }
 }
 
 /*
@@ -65,7 +71,10 @@ $label-danger-color:                             $global-inverse-color !default;
 .uk-label-warning {
     background-color: $label-warning-background;
     color: $label-warning-color;
-    @if(mixin-exists(hook-label-warning)) {@include hook-label-warning();}
+
+    @if (mixin-exists(hook-label-warning)) {
+        @include hook-label-warning();
+    }
 }
 
 /*
@@ -75,14 +84,19 @@ $label-danger-color:                             $global-inverse-color !default;
 .uk-label-danger {
     background-color: $label-danger-background;
     color: $label-danger-color;
-    @if(mixin-exists(hook-label-danger)) {@include hook-label-danger();}
+
+    @if (mixin-exists(hook-label-danger)) {
+        @include hook-label-danger();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-label-misc)) {@include hook-label-misc();}
+@if (mixin-exists(hook-label-misc)) {
+    @include hook-label-misc();
+}
 
 // @mixin hook-label(){}
 // @mixin hook-label-success(){}
@@ -96,7 +110,6 @@ $label-danger-color:                             $global-inverse-color !default;
 
 $inverse-label-background:                      $inverse-global-primary-background !default;
 $inverse-label-color:                           $inverse-global-inverse-color !default;
-
 
 
 // @mixin hook-inverse-label(){}

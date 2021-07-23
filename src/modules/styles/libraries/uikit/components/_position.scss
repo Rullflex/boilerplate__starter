@@ -53,6 +53,7 @@ $position-large-margin-l:                               50px !default;
 [class*='uk-position-right'],
 [class*='uk-position-center'] {
     position: absolute !important;
+
     /* 1 */
     max-width: 100%;
 }
@@ -118,7 +119,8 @@ $position-large-margin-l:                               50px !default;
 .uk-position-center {
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+
     /* 1 */
     width: max-content;
     max-width: 100%;
@@ -132,8 +134,13 @@ $position-large-margin-l:                               50px !default;
     transform: translateY(-50%);
 }
 
-.uk-position-center-left { left: 0; }
-.uk-position-center-right { right: 0; }
+.uk-position-center-left {
+    left: 0;
+}
+
+.uk-position-center-right {
+    right: 0;
+}
 
 .uk-position-center-left-out {
     right: 100%;
@@ -150,14 +157,20 @@ $position-large-margin-l:                               50px !default;
 .uk-position-bottom-center {
     left: 50%;
     transform: translateX(-50%);
+
     /* 1 */
     width: max-content;
     max-width: 100%;
     box-sizing: border-box;
 }
 
-.uk-position-top-center { top: 0; }
-.uk-position-bottom-center { bottom: 0; }
+.uk-position-top-center {
+    top: 0;
+}
+
+.uk-position-bottom-center {
+    bottom: 0;
+}
 
 
 /* Cover
@@ -175,13 +188,21 @@ $position-large-margin-l:                               50px !default;
 /* Utility
  ========================================================================== */
 
-.uk-position-relative { position: relative !important; }
+.uk-position-relative {
+    position: relative !important;
+}
 
-.uk-position-absolute { position: absolute !important; }
+.uk-position-absolute {
+    position: absolute !important;
+}
 
-.uk-position-fixed { position: fixed !important; }
+.uk-position-fixed {
+    position: fixed !important;
+}
 
-.uk-position-z-index { z-index: 1; }
+.uk-position-z-index {
+    z-index: 1;
+}
 
 
 /* Margin modifier
@@ -196,13 +217,19 @@ $position-large-margin-l:                               50px !default;
     margin: $position-small-margin;
 }
 
-.uk-position-small.uk-position-center { transform: translate(-50%, -50%) translate(-$position-small-margin, (-$position-small-margin)); }
+.uk-position-small.uk-position-center {
+    transform: translate(-50%, -50%) translate(-$position-small-margin, (-$position-small-margin));
+}
 
 .uk-position-small[class*='uk-position-center-left'],
-.uk-position-small[class*='uk-position-center-right'] { transform: translateY(-50%) translateY(-$position-small-margin); }
+.uk-position-small[class*='uk-position-center-right'] {
+    transform: translateY(-50%) translateY(-$position-small-margin);
+}
 
 .uk-position-small.uk-position-top-center,
-.uk-position-small.uk-position-bottom-center { transform: translateX(-50%) translateX(-$position-small-margin); }
+.uk-position-small.uk-position-bottom-center {
+    transform: translateX(-50%) translateX(-$position-small-margin);
+}
 
 /*
  * Medium
@@ -213,13 +240,19 @@ $position-large-margin-l:                               50px !default;
     margin: $position-medium-margin;
 }
 
-.uk-position-medium.uk-position-center { transform: translate(-50%, -50%) translate(-$position-medium-margin, (-$position-medium-margin)); }
+.uk-position-medium.uk-position-center {
+    transform: translate(-50%, -50%) translate(-$position-medium-margin, (-$position-medium-margin));
+}
 
 .uk-position-medium[class*='uk-position-center-left'],
-.uk-position-medium[class*='uk-position-center-right'] { transform: translateY(-50%) translateY(-$position-medium-margin); }
+.uk-position-medium[class*='uk-position-center-right'] {
+    transform: translateY(-50%) translateY(-$position-medium-margin);
+}
 
 .uk-position-medium.uk-position-top-center,
-.uk-position-medium.uk-position-bottom-center { transform: translateX(-50%) translateX(-$position-medium-margin); }
+.uk-position-medium.uk-position-bottom-center {
+    transform: translateX(-50%) translateX(-$position-medium-margin);
+}
 
 /*
  * Large
@@ -230,36 +263,48 @@ $position-large-margin-l:                               50px !default;
     margin: $position-large-margin;
 }
 
-.uk-position-large.uk-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin, (-$position-large-margin)); }
+.uk-position-large.uk-position-center {
+    transform: translate(-50%, -50%) translate(-$position-large-margin, (-$position-large-margin));
+}
 
 .uk-position-large[class*='uk-position-center-left'],
-.uk-position-large[class*='uk-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin); }
+.uk-position-large[class*='uk-position-center-right'] {
+    transform: translateY(-50%) translateY(-$position-large-margin);
+}
 
 .uk-position-large.uk-position-top-center,
-.uk-position-large.uk-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin); }
+.uk-position-large.uk-position-bottom-center {
+    transform: translateX(-50%) translateX(-$position-large-margin);
+}
 
 /* Desktop and bigger */
 @media (min-width: $breakpoint-large) {
-
     .uk-position-large {
         max-width: unquote('calc(100% - (#{$position-large-margin-l} * 2))');
         margin: $position-large-margin-l;
     }
 
-    .uk-position-large.uk-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin-l, (-$position-large-margin-l)); }
+    .uk-position-large.uk-position-center {
+        transform: translate(-50%, -50%) translate(-$position-large-margin-l, (-$position-large-margin-l));
+    }
 
     .uk-position-large[class*='uk-position-center-left'],
-    .uk-position-large[class*='uk-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin-l); }
+    .uk-position-large[class*='uk-position-center-right'] {
+        transform: translateY(-50%) translateY(-$position-large-margin-l);
+    }
 
     .uk-position-large.uk-position-top-center,
-    .uk-position-large.uk-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin-l); }
-
+    .uk-position-large.uk-position-bottom-center {
+        transform: translateX(-50%) translateX(-$position-large-margin-l);
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-position-misc)) {@include hook-position-misc();}
+@if (mixin-exists(hook-position-misc)) {
+    @include hook-position-misc();
+}
 
 // @mixin hook-position-misc(){}

@@ -39,14 +39,20 @@ $tab-item-disabled-color:                 $global-muted-color !default;
 
 .uk-tab {
     display: flex;
+
     /* 1 */
     flex-wrap: wrap;
+
     /* 2 */
     margin-left: (-$tab-margin-horizontal);
+
     /* 3 */
     padding: 0;
     list-style: none;
-    @if(mixin-exists(hook-tab)) {@include hook-tab();}
+
+    @if (mixin-exists(hook-tab)) {
+        @include hook-tab();
+    }
 }
 
 /*
@@ -58,8 +64,10 @@ $tab-item-disabled-color:                 $global-muted-color !default;
 .uk-tab > * {
     /* 1 */
     flex: none;
+
     /* 2 */
     padding-left: $tab-margin-horizontal;
+
     /* 3 */
     position: relative;
 }
@@ -78,10 +86,14 @@ $tab-item-disabled-color:                 $global-muted-color !default;
     /* 1 */
     display: block;
     text-align: center;
+
     /* 2 */
     padding: $tab-item-padding-vertical $tab-item-padding-horizontal;
     color: $tab-item-color;
-    @if(mixin-exists(hook-tab-item)) {@include hook-tab-item();}
+
+    @if (mixin-exists(hook-tab-item)) {
+        @include hook-tab-item();
+    }
 }
 
 /* Hover + Focus */
@@ -89,19 +101,28 @@ $tab-item-disabled-color:                 $global-muted-color !default;
 .uk-tab > * > a:focus {
     color: $tab-item-hover-color;
     text-decoration: $tab-item-hover-text-decoration;
-    @if(mixin-exists(hook-tab-item-hover)) {@include hook-tab-item-hover();}
+
+    @if (mixin-exists(hook-tab-item-hover)) {
+        @include hook-tab-item-hover();
+    }
 }
 
 /* Active */
 .uk-tab > .uk-active > a {
     color: $tab-item-active-color;
-    @if(mixin-exists(hook-tab-item-active)) {@include hook-tab-item-active();}
+
+    @if (mixin-exists(hook-tab-item-active)) {
+        @include hook-tab-item-active();
+    }
 }
 
 /* Disabled */
 .uk-tab > .uk-disabled > a {
     color: $tab-item-disabled-color;
-    @if(mixin-exists(hook-tab-item-disabled)) {@include hook-tab-item-disabled();}
+
+    @if (mixin-exists(hook-tab-item-disabled)) {
+        @include hook-tab-item-disabled();
+    }
 }
 
 
@@ -113,11 +134,15 @@ $tab-item-disabled-color:                 $global-muted-color !default;
  */
 
 .uk-tab-bottom {
-    @if(mixin-exists(hook-tab-bottom)) {@include hook-tab-bottom();}
+    @if (mixin-exists(hook-tab-bottom)) {
+        @include hook-tab-bottom();
+    }
 }
 
 .uk-tab-bottom > * > a {
-    @if(mixin-exists(hook-tab-bottom-item)) {@include hook-tab-bottom-item();}
+    @if (mixin-exists(hook-tab-bottom-item)) {
+        @include hook-tab-bottom-item();
+    }
 }
 
 /*
@@ -128,37 +153,52 @@ $tab-item-disabled-color:                 $global-muted-color !default;
 .uk-tab-left,
 .uk-tab-right {
     flex-direction: column;
+
     /* 1 */
     margin-left: 0;
 }
 
 /* 1 */
 .uk-tab-left > *,
-.uk-tab-right > * { padding-left: 0; }
+.uk-tab-right > * {
+    padding-left: 0;
+}
 
 .uk-tab-left {
-    @if(mixin-exists(hook-tab-left)) {@include hook-tab-left();}
+    @if (mixin-exists(hook-tab-left)) {
+        @include hook-tab-left();
+    }
 }
 
 .uk-tab-right {
-    @if(mixin-exists(hook-tab-right)) {@include hook-tab-right();}
+    @if (mixin-exists(hook-tab-right)) {
+        @include hook-tab-right();
+    }
 }
 
 .uk-tab-left > * > a {
     text-align: left;
-    @if(mixin-exists(hook-tab-left-item)) {@include hook-tab-left-item();}
+
+    @if (mixin-exists(hook-tab-left-item)) {
+        @include hook-tab-left-item();
+    }
 }
 
 .uk-tab-right > * > a {
     text-align: left;
-    @if(mixin-exists(hook-tab-right-item)) {@include hook-tab-right-item();}
+
+    @if (mixin-exists(hook-tab-right-item)) {
+        @include hook-tab-right-item();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-tab-misc)) {@include hook-tab-misc();}
+@if (mixin-exists(hook-tab-misc)) {
+    @include hook-tab-misc();
+}
 
 // @mixin hook-tab(){}
 // @mixin hook-tab-item(){}
@@ -181,7 +221,6 @@ $inverse-tab-item-color:                        $inverse-global-muted-color !def
 $inverse-tab-item-hover-color:                  $inverse-global-color !default;
 $inverse-tab-item-active-color:                 $inverse-global-emphasis-color !default;
 $inverse-tab-item-disabled-color:               $inverse-global-muted-color !default;
-
 
 
 // @mixin hook-inverse-tab(){}

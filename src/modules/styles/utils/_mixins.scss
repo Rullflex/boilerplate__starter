@@ -1,3 +1,38 @@
+@mixin ibg($bg-color: $secondary) {
+    position: relative;
+    overflow: hidden;
+    background: $bg-color;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+}
+
+@mixin bg-ibg($bg-color: $secondary) {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: $bg-color;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+}
+
 // Universal Typographic Mixin
 //////////////////////////////////////////////////////
 
@@ -11,11 +46,17 @@
 
     @if $font-size == $font-size--large {
         line-height: $line-height--large;
-    } @else if $font-size == $font-size--normal {
+    }
+
+    @else if $font-size == $font-size--normal {
         line-height: $line-height--normal;
-    } @else if $font-size == $font-size--small {
+    }
+
+    @else if $font-size == $font-size--small {
         line-height: $line-height--small;
-    } @else {
+    }
+
+    @else {
         line-height: floor($font-size * $line-height--base);
     }
 }
@@ -28,16 +69,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 @mixin center-item-y($position: absolute) {
     position: $position;
     top: 50%;
     transform: translateY(-50%);
 }
+
 @mixin center-item-x($position: absolute) {
     position: $position;
     left: 50%;
     transform: translateX(-50%);
 }
+
 @mixin center-item-undo($top: unset, $left: unset, $transform: unset) {
     top: $top;
     left: $left;
@@ -47,24 +91,31 @@
 @mixin adaptiv-font($pcSize, $mobSize, $maxContainerWidth) {
     $addSize: $pcSize - $mobSize;
     $maxContainerWidth: $maxContainerWidth - 320;
+
     font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxContainerWidth}));
 }
+
 @mixin aFontMob($size, $endPoint: 420, $startPoint: 320) {
     $koef: $endPoint / $startPoint;
     $maxSize: $size * $koef;
+
     @media (min-width: #{$endPoint + px}) {
         font-size: #{$maxSize + px};
     }
     $addSize: $maxSize - $size;
     $endPoint: $endPoint - $startPoint;
+
     font-size: calc(#{$size + px} + #{$addSize} * ((100vw - #{$startPoint + px}) / #{$endPoint}));
 }
+
 @mixin aProp($prop, $startPoint, $koef: 0.3, $maxContainerWidth: 425, $minContainerWidth: 320) {
     @media (min-width: #{$maxContainerWidth + px}) {
         #{$prop}: calc(#{$koef} * (#{$maxContainerWidth + px} - #{$minContainerWidth + px}) + #{$startPoint});
     }
+
     #{$prop}: calc(#{$koef} * (100vw - #{$minContainerWidth + px}) + #{$startPoint});
 }
+
 @mixin bgi-cover($imgPath, $color) {
     background-size: cover;
     background-repeat: no-repeat;
@@ -89,22 +140,26 @@
 //@include beveled-corners(#58a, 15px, 5px); (цвет + 1-4 значения)
 @mixin beveled-corners($bg, $tl: 0, $tr: $tl, $br: $tl, $bl: $tr) {
     background: $bg;
-    background: linear-gradient(135deg, transparent $tl, $bg 0) top left,
+    background:
+        linear-gradient(135deg, transparent $tl, $bg 0) top left,
         linear-gradient(225deg, transparent $tr, $bg 0) top right,
         linear-gradient(-45deg, transparent $br, $bg 0) bottom right,
         linear-gradient(45deg, transparent $bl, $bg 0) bottom left;
     background-size: 50% 50%;
     background-repeat: no-repeat;
 }
+
 @mixin clip-okt($ar, $w, $h) {
     $w: $w - $ar;
     $h: $h - $ar;
     $ar: #{$ar + px};
     $w: #{$w + px};
     $h: #{$h + px};
+
     -webkit-clip-path: polygon($ar 0, $w 0, 100% $ar, 100% $h, $w 100%, $ar 100%, 0% $h, 0% $ar);
     clip-path: polygon($ar 0, $w 0, 100% $ar, 100% $h, $w 100%, $ar 100%, 0% $h, 0% $ar);
 }
+
 @mixin clip-okt-frame($ar, $w, $h, $bw) {
     $ow: $w - $ar;
     $oh: $h - $ar;
@@ -124,46 +179,10 @@
     $ix: #{$ix + px};
     $iy: #{$iy + px};
 
-    -webkit-clip-path: polygon(
-        $ar 0,
-        $ow 0,
-        100% $ar,
-        100% $oh,
-        $ow 100%,
-        $ar 100%,
-        0% $oh,
-        $bw $ih,
-        $bar $iy,
-        $iw $iy,
-        $ix $ih,
-        $ix $bar,
-        $iw $bw,
-        $bar $bw,
-        $bw $bar,
-        $bw $ih,
-        0% $oh,
-        0% $ar
-    );
-    clip-path: polygon(
-        $ar 0,
-        $ow 0,
-        100% $ar,
-        100% $oh,
-        $ow 100%,
-        $ar 100%,
-        0% $oh,
-        $bw $ih,
-        $bar $iy,
-        $iw $iy,
-        $ix $ih,
-        $ix $bar,
-        $iw $bw,
-        $bar $bw,
-        $bw $bar,
-        $bw $ih,
-        0% $oh,
-        0% $ar
-    );
+    -webkit-clip-path:
+ polygon($ar 0, $ow 0, 100% $ar, 100% $oh, $ow 100%, $ar 100%, 0% $oh, $bw $ih, $bar $iy, $iw $iy, $ix $ih, $ix $bar, $iw $bw, $bar $bw, $bw $bar, $bw $ih, 0% $oh, 0% $ar);
+    clip-path:
+ polygon($ar 0, $ow 0, 100% $ar, 100% $oh, $ow 100%, $ar 100%, 0% $oh, $bw $ih, $bar $iy, $iw $iy, $ix $ih, $ix $bar, $iw $bw, $bar $bw, $bw $bar, $bw $ih, 0% $oh, 0% $ar);
 }
 
 @mixin font-face($font_name, $file_name, $weight, $style, $path: null) {
@@ -200,9 +219,7 @@
         display: block;
         width: 100%;
         height: 100%;
-
         background: $background;
-
         position: absolute;
         top: 0;
         left: 0;
@@ -266,6 +283,7 @@
 
 @mixin make-col-offset($size, $columns: $grid-columns) {
     $num: $size / $columns;
+
     margin-left: if($num == 0, 0, percentage($num));
 }
 
@@ -380,6 +398,7 @@
 //    md
 @function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
     $n: index($breakpoint-names, $name);
+
     @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
@@ -389,6 +408,7 @@
 //    576px
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $min: map-get($breakpoints, $name);
+
     @return if($min != 0, $min, null);
 }
 
@@ -403,6 +423,7 @@
 //    767.98px
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
     $next: breakpoint-next($name, $breakpoints);
+
     @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
 }
 
@@ -421,11 +442,14 @@
 // Makes the @content apply to the given breakpoint and wider.
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
     $min: breakpoint-min($name, $breakpoints);
+
     @if $min {
         @media (min-width: $min) {
             @content;
         }
-    } @else {
+    }
+
+    @else {
         @content;
     }
 }
@@ -434,11 +458,14 @@
 // Makes the @content apply to the given breakpoint and narrower.
 @mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
     $max: breakpoint-max($name, $breakpoints);
+
     @if $max {
         @media (max-width: $max) {
             @content;
         }
-    } @else {
+    }
+
+    @else {
         @content;
     }
 }
@@ -453,11 +480,15 @@
         @media (min-width: $min) and (max-width: $max) {
             @content;
         }
-    } @else if $max == null {
+    }
+
+    @else if $max == null {
         @include media-breakpoint-up($lower, $breakpoints) {
             @content;
         }
-    } @else if $min == null {
+    }
+
+    @else if $min == null {
         @include media-breakpoint-down($upper, $breakpoints) {
             @content;
         }
@@ -475,11 +506,15 @@
         @media (min-width: $min) and (max-width: $max) {
             @content;
         }
-    } @else if $max == null {
+    }
+
+    @else if $max == null {
         @include media-breakpoint-up($name, $breakpoints) {
             @content;
         }
-    } @else if $min == null {
+    }
+
+    @else if $min == null {
         @include media-breakpoint-down($name, $breakpoints) {
             @content;
         }
@@ -491,12 +526,17 @@
 @mixin _assert-ascending($map, $map-name) {
     $prev-key: null;
     $prev-num: null;
+
     @each $key, $num in $map {
         @if $prev-num == null or unit($num) == '%' or unit($prev-num) == '%' {
             // Do nothing
-        } @else if not comparable($prev-num, $num) {
+        }
+
+        @else if not comparable($prev-num, $num) {
             @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-        } @else if $prev-num >= $num {
+        }
+
+        @else if $prev-num >= $num {
             @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
         }
         $prev-key: $key;
@@ -509,7 +549,8 @@
 @mixin _assert-starts-at-zero($map, $map-name: '$grid-breakpoints') {
     $values: map-values($map);
     $first-value: nth($values, 1);
+
     @if $first-value != 0 {
-        @warn "First breakpoint in #{$map-name} must start at 0, but starts at #{$first-value}.";
+        @warn 'First breakpoint in #{$map-name} must start at 0, but starts at #{$first-value}.';
     }
 }

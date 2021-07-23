@@ -36,15 +36,20 @@ $badge-hover-color:                              $global-inverse-color !default;
     padding: $badge-padding-vertical $badge-padding-horizontal;
     border-radius: $badge-border-radius;
     vertical-align: middle;
+
     /* 1 */
     background: $badge-background;
     color: $badge-color;
     font-size: $badge-font-size;
+
     /* 2 */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    @if(mixin-exists(hook-badge)) {@include hook-badge();}
+
+    @if (mixin-exists(hook-badge)) {
+        @include hook-badge();
+    }
 }
 
 /*
@@ -56,14 +61,19 @@ $badge-hover-color:                              $global-inverse-color !default;
     color: $badge-hover-color;
     text-decoration: none;
     outline: none;
-    @if(mixin-exists(hook-badge-hover)) {@include hook-badge-hover();}
+
+    @if (mixin-exists(hook-badge-hover)) {
+        @include hook-badge-hover();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-badge-misc)) {@include hook-badge-misc();}
+@if (mixin-exists(hook-badge-misc)) {
+    @include hook-badge-misc();
+}
 
 // @mixin hook-badge(){}
 // @mixin hook-badge-hover(){}
@@ -76,7 +86,6 @@ $badge-hover-color:                              $global-inverse-color !default;
 $inverse-badge-background:                      $inverse-global-primary-background !default;
 $inverse-badge-color:                           $inverse-global-inverse-color !default;
 $inverse-badge-hover-color:                     $inverse-global-inverse-color !default;
-
 
 
 // @mixin hook-inverse-badge(){}

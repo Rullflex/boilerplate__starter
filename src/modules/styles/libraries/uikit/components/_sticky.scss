@@ -31,6 +31,7 @@ $sticky-reverse-animation-duration:              0.2s !default;
     z-index: $sticky-z-index;
     box-sizing: border-box;
     margin: 0 !important;
+
     /* 1 */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -40,14 +41,20 @@ $sticky-reverse-animation-duration:              0.2s !default;
  * Faster animations
  */
 
-.uk-sticky[class*='uk-animation-'] { animation-duration: $sticky-animation-duration; }
+.uk-sticky[class*='uk-animation-'] {
+    animation-duration: $sticky-animation-duration;
+}
 
-.uk-sticky.uk-animation-reverse { animation-duration: $sticky-reverse-animation-duration; }
+.uk-sticky.uk-animation-reverse {
+    animation-duration: $sticky-reverse-animation-duration;
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-sticky-misc)) {@include hook-sticky-misc();}
+@if (mixin-exists(hook-sticky-misc)) {
+    @include hook-sticky-misc();
+}
 
 // @mixin hook-sticky-misc(){}

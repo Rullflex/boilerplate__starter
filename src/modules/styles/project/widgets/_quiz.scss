@@ -1,28 +1,32 @@
 .quiz {
     border: 1px solid black;
     padding: 2rem;
+
     .title {
         margin-bottom: 2rem;
     }
 
     &-items {
-        
         border: 1px solid black;
     }
+
     &-nav {
         display: flex;
+
         a {
             display: block;
             width: 1rem;
             height: 1rem;
             border-radius: 50%;
-            background: #eee;
+            background: #eeeeee;
         }
     }
+
     &-progress {
         padding: 0.2rem;
-        background: #eee;
+        background: #eeeeee;
         margin: 0.5rem auto;
+
         &-line {
             width: 25%;
             height: 5px;

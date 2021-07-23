@@ -23,14 +23,17 @@
 .uk-cover {
     /* 1 */
     max-width: none;
+
     /* 2 */
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-iframe.uk-cover { pointer-events: none; }
+iframe.uk-cover {
+    pointer-events: none;
+}
 
 
 /* Container
@@ -44,6 +47,7 @@ iframe.uk-cover { pointer-events: none; }
 .uk-cover-container {
     /* 1 */
     overflow: hidden;
+
     /* 2 */
     position: relative;
 }
@@ -52,6 +56,8 @@ iframe.uk-cover { pointer-events: none; }
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-cover-misc)) {@include hook-cover-misc();}
+@if (mixin-exists(hook-cover-misc)) {
+    @include hook-cover-misc();
+}
 
 // @mixin hook-cover-misc(){}

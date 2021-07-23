@@ -48,17 +48,24 @@ $alert-danger-color:                             $global-danger-background !defa
     padding: $alert-padding $alert-padding-right $alert-padding $alert-padding;
     background: $alert-background;
     color: $alert-color;
-    @if(mixin-exists(hook-alert)) {@include hook-alert();}
+
+    @if (mixin-exists(hook-alert)) {
+        @include hook-alert();
+    }
 }
 
 /* Add margin if adjacent element */
-* + .uk-alert { margin-top: $alert-margin-vertical; }
+* + .uk-alert {
+    margin-top: $alert-margin-vertical;
+}
 
 /*
  * Remove margin from the last-child
  */
 
-.uk-alert > :last-child { margin-bottom: 0; }
+.uk-alert > :last-child {
+    margin-bottom: 0;
+}
 
 
 /* Close
@@ -69,14 +76,19 @@ $alert-danger-color:                             $global-danger-background !defa
     position: absolute;
     top: $alert-close-top;
     right: $alert-close-right;
-    @if(mixin-exists(hook-alert-close)) {@include hook-alert-close();}
+
+    @if (mixin-exists(hook-alert-close)) {
+        @include hook-alert-close();
+    }
 }
 
 /*
  * Remove margin from adjacent element
  */
 
-.uk-alert-close:first-child + * { margin-top: 0; }
+.uk-alert-close:first-child + * {
+    margin-top: 0;
+}
 
 /*
  * Hover + Focus
@@ -84,7 +96,9 @@ $alert-danger-color:                             $global-danger-background !defa
 
 .uk-alert-close:hover,
 .uk-alert-close:focus {
-    @if(mixin-exists(hook-alert-close-hover)) {@include hook-alert-close-hover();}
+    @if (mixin-exists(hook-alert-close-hover)) {
+        @include hook-alert-close-hover();
+    }
 }
 
 
@@ -98,7 +112,10 @@ $alert-danger-color:                             $global-danger-background !defa
 .uk-alert-primary {
     background: $alert-primary-background;
     color: $alert-primary-color;
-    @if(mixin-exists(hook-alert-primary)) {@include hook-alert-primary();}
+
+    @if (mixin-exists(hook-alert-primary)) {
+        @include hook-alert-primary();
+    }
 }
 
 /*
@@ -108,7 +125,10 @@ $alert-danger-color:                             $global-danger-background !defa
 .uk-alert-success {
     background: $alert-success-background;
     color: $alert-success-color;
-    @if(mixin-exists(hook-alert-success)) {@include hook-alert-success();}
+
+    @if (mixin-exists(hook-alert-success)) {
+        @include hook-alert-success();
+    }
 }
 
 /*
@@ -118,7 +138,10 @@ $alert-danger-color:                             $global-danger-background !defa
 .uk-alert-warning {
     background: $alert-warning-background;
     color: $alert-warning-color;
-    @if(mixin-exists(hook-alert-warning)) {@include hook-alert-warning();}
+
+    @if (mixin-exists(hook-alert-warning)) {
+        @include hook-alert-warning();
+    }
 }
 
 /*
@@ -128,14 +151,19 @@ $alert-danger-color:                             $global-danger-background !defa
 .uk-alert-danger {
     background: $alert-danger-background;
     color: $alert-danger-color;
-    @if(mixin-exists(hook-alert-danger)) {@include hook-alert-danger();}
+
+    @if (mixin-exists(hook-alert-danger)) {
+        @include hook-alert-danger();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-alert-misc)) {@include hook-alert-misc();}
+@if (mixin-exists(hook-alert-misc)) {
+    @include hook-alert-misc();
+}
 
 // @mixin hook-alert(){}
 // @mixin hook-alert-close(){}

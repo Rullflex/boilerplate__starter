@@ -29,14 +29,19 @@ $article-meta-color:                             $global-muted-color !default;
 
 .uk-article {
     display: flow-root;
-    @if(mixin-exists(hook-article)) {@include hook-article();}
+
+    @if (mixin-exists(hook-article)) {
+        @include hook-article();
+    }
 }
 
 /*
  * Remove margin from the last-child
  */
 
-.uk-article > :last-child { margin-bottom: 0; }
+.uk-article > :last-child {
+    margin-bottom: 0;
+}
 
 
 /* Adjacent sibling
@@ -44,7 +49,10 @@ $article-meta-color:                             $global-muted-color !default;
 
 .uk-article + .uk-article {
     margin-top: $article-margin-top;
-    @if(mixin-exists(hook-article-adjacent)) {@include hook-article-adjacent();}
+
+    @if (mixin-exists(hook-article-adjacent)) {
+        @include hook-article-adjacent();
+    }
 }
 
 
@@ -54,14 +62,17 @@ $article-meta-color:                             $global-muted-color !default;
 .uk-article-title {
     font-size: $article-title-font-size;
     line-height: $article-title-line-height;
-    @if(mixin-exists(hook-article-title)) {@include hook-article-title();}
+
+    @if (mixin-exists(hook-article-title)) {
+        @include hook-article-title();
+    }
 }
 
 /* Tablet landscape and bigger */
 @media (min-width: $breakpoint-medium) {
-
-    .uk-article-title { font-size: $article-title-font-size-m; }
-
+    .uk-article-title {
+        font-size: $article-title-font-size-m;
+    }
 }
 
 
@@ -72,14 +83,19 @@ $article-meta-color:                             $global-muted-color !default;
     font-size: $article-meta-font-size;
     line-height: $article-meta-line-height;
     color: $article-meta-color;
-    @if(mixin-exists(hook-article-meta)) {@include hook-article-meta();}
+
+    @if (mixin-exists(hook-article-meta)) {
+        @include hook-article-meta();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-article-misc)) {@include hook-article-misc();}
+@if (mixin-exists(hook-article-misc)) {
+    @include hook-article-misc();
+}
 
 // @mixin hook-article(){}
 // @mixin hook-article-adjacent(){}
@@ -92,7 +108,6 @@ $article-meta-color:                             $global-muted-color !default;
 // ========================================================================
 
 $inverse-article-meta-color:                    $inverse-global-muted-color !default;
-
 
 
 // @mixin hook-inverse-article-title(){}

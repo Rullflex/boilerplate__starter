@@ -28,7 +28,10 @@ $totop-active-color:                             $global-emphasis-color !default
 .uk-totop {
     padding: $totop-padding;
     color: $totop-color;
-    @if(mixin-exists(hook-totop)) {@include hook-totop();}
+
+    @if (mixin-exists(hook-totop)) {
+        @include hook-totop();
+    }
 }
 
 /* Hover + Focus */
@@ -36,20 +39,28 @@ $totop-active-color:                             $global-emphasis-color !default
 .uk-totop:focus {
     color: $totop-hover-color;
     outline: none;
-    @if(mixin-exists(hook-totop-hover)) {@include hook-totop-hover();}
+
+    @if (mixin-exists(hook-totop-hover)) {
+        @include hook-totop-hover();
+    }
 }
 
 /* OnClick */
 .uk-totop:active {
     color: $totop-active-color;
-    @if(mixin-exists(hook-totop-active)) {@include hook-totop-active();}
+
+    @if (mixin-exists(hook-totop-active)) {
+        @include hook-totop-active();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-totop-misc)) {@include hook-totop-misc();}
+@if (mixin-exists(hook-totop-misc)) {
+    @include hook-totop-misc();
+}
 
 // @mixin hook-totop(){}
 // @mixin hook-totop-hover(){}
@@ -63,7 +74,6 @@ $totop-active-color:                             $global-emphasis-color !default
 $inverse-totop-color:                        $inverse-global-muted-color !default;
 $inverse-totop-hover-color:                  $inverse-global-color !default;
 $inverse-totop-active-color:                 $inverse-global-emphasis-color !default;
-
 
 
 // @mixin hook-inverse-totop(){}

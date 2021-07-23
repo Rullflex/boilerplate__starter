@@ -20,27 +20,27 @@
 // ========================================================================
 
 $lightbox-z-index:                               $global-z-index + 10 !default;
-$lightbox-background:                            #000 !default;
+$lightbox-background:                            #000000 !default;
 
-$lightbox-item-color:                            rgba(255,255,255,0.7) !default;
+$lightbox-item-color:                            rgba(255, 255, 255, 0.7) !default;
 $lightbox-item-max-width:                        100vw !default;
 $lightbox-item-max-height:                       100vh !default;
 
 $lightbox-toolbar-padding-vertical:              10px !default;
 $lightbox-toolbar-padding-horizontal:            10px !default;
-$lightbox-toolbar-background:                    rgba(0,0,0,0.3) !default;
-$lightbox-toolbar-color:                         rgba(255,255,255,0.7) !default;
+$lightbox-toolbar-background:                    rgba(0, 0, 0, 0.3) !default;
+$lightbox-toolbar-color:                         rgba(255, 255, 255, 0.7) !default;
 
 $lightbox-toolbar-icon-padding:                  5px !default;
-$lightbox-toolbar-icon-color:                    rgba(255,255,255,0.7) !default;
+$lightbox-toolbar-icon-color:                    rgba(255, 255, 255, 0.7) !default;
 
-$lightbox-toolbar-icon-hover-color:              #fff !default;
+$lightbox-toolbar-icon-hover-color:              #ffffff !default;
 
 $lightbox-button-size:                           50px !default;
 $lightbox-button-background:                     $lightbox-toolbar-background !default;
-$lightbox-button-color:                          rgba(255,255,255,0.7) !default;
+$lightbox-button-color:                          rgba(255, 255, 255, 0.7) !default;
 
-$lightbox-button-hover-color:                    #fff !default;
+$lightbox-button-hover-color:                    #ffffff !default;
 
 
 /* ========================================================================
@@ -60,6 +60,7 @@ $lightbox-button-hover-color:                    #fff !default;
 .uk-lightbox {
     /* 1 */
     display: none;
+
     /* 2 */
     position: fixed;
     top: 0;
@@ -67,14 +68,20 @@ $lightbox-button-hover-color:                    #fff !default;
     bottom: 0;
     left: 0;
     z-index: $lightbox-z-index;
+
     /* 5 */
     background: $lightbox-background;
+
     /* 6 */
     opacity: 0;
     transition: opacity 0.15s linear;
+
     /* 7 */
     touch-action: pinch-zoom;
-    @if(mixin-exists(hook-lightbox)) {@include hook-lightbox();}
+
+    @if (mixin-exists(hook-lightbox)) {
+        @include hook-lightbox();
+    }
 }
 
 /*
@@ -85,6 +92,7 @@ $lightbox-button-hover-color:                    #fff !default;
 
 .uk-lightbox.uk-open {
     display: block;
+
     /* 2 */
     opacity: 1;
 }
@@ -97,7 +105,9 @@ $lightbox-button-hover-color:                    #fff !default;
  * Prevent scrollbars
  */
 
-.uk-lightbox-page { overflow: hidden; }
+.uk-lightbox-page {
+    overflow: hidden;
+}
 
 
 /* Item
@@ -121,15 +131,21 @@ $lightbox-button-hover-color:                    #fff !default;
     right: 0;
     bottom: 0;
     left: 0;
+
     /* 2 */
     display: none;
     justify-content: center;
     align-items: center;
+
     /* 3 */
     color: $lightbox-item-color;
+
     /* 4 */
     will-change: transform, opacity;
-    @if(mixin-exists(hook-lightbox-item)) {@include hook-lightbox-item();}
+
+    @if (mixin-exists(hook-lightbox-item)) {
+        @include hook-lightbox-item();
+    }
 }
 
 /* 5 */
@@ -139,14 +155,18 @@ $lightbox-button-hover-color:                    #fff !default;
 }
 
 /* 6 */
-.uk-lightbox-items > :focus { outline: none; }
+.uk-lightbox-items > :focus {
+    outline: none;
+}
 
 .uk-lightbox-items > * > :not(iframe) {
     width: auto;
     height: auto;
 }
 
-.uk-lightbox-items > .uk-active { display: flex; }
+.uk-lightbox-items > .uk-active {
+    display: flex;
+}
 
 /* Toolbar
  ========================================================================== */
@@ -155,10 +175,15 @@ $lightbox-button-hover-color:                    #fff !default;
     padding: $lightbox-toolbar-padding-vertical $lightbox-toolbar-padding-horizontal;
     background: $lightbox-toolbar-background;
     color: $lightbox-toolbar-color;
-    @if(mixin-exists(hook-lightbox-toolbar)) {@include hook-lightbox-toolbar();}
+
+    @if (mixin-exists(hook-lightbox-toolbar)) {
+        @include hook-lightbox-toolbar();
+    }
 }
 
-.uk-lightbox-toolbar > * { color: $lightbox-toolbar-color; }
+.uk-lightbox-toolbar > * {
+    color: $lightbox-toolbar-color;
+}
 
 
 /* Toolbar Icon (Close)
@@ -167,7 +192,10 @@ $lightbox-button-hover-color:                    #fff !default;
 .uk-lightbox-toolbar-icon {
     padding: $lightbox-toolbar-icon-padding;
     color: $lightbox-toolbar-icon-color;
-    @if(mixin-exists(hook-lightbox-toolbar-icon)) {@include hook-lightbox-toolbar-icon();}
+
+    @if (mixin-exists(hook-lightbox-toolbar-icon)) {
+        @include hook-lightbox-toolbar-icon();
+    }
 }
 
 /*
@@ -176,7 +204,10 @@ $lightbox-button-hover-color:                    #fff !default;
 
 .uk-lightbox-toolbar-icon:hover {
     color: $lightbox-toolbar-icon-hover-color;
-    @if(mixin-exists(hook-lightbox-toolbar-icon-hover)) {@include hook-lightbox-toolbar-icon-hover();}
+
+    @if (mixin-exists(hook-lightbox-toolbar-icon-hover)) {
+        @include hook-lightbox-toolbar-icon-hover();
+    }
 }
 
 
@@ -194,30 +225,41 @@ $lightbox-button-hover-color:                    #fff !default;
     height: $lightbox-button-size;
     background: $lightbox-button-background;
     color: $lightbox-button-color;
+
     /* 1 */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    @if(mixin-exists(hook-lightbox-button)) {@include hook-lightbox-button();}
+
+    @if (mixin-exists(hook-lightbox-button)) {
+        @include hook-lightbox-button();
+    }
 }
 
 /* Hover + Focus */
 .uk-lightbox-button:hover,
 .uk-lightbox-button:focus {
     color: $lightbox-button-hover-color;
-    @if(mixin-exists(hook-lightbox-button-hover)) {@include hook-lightbox-button-hover();}
+
+    @if (mixin-exists(hook-lightbox-button-hover)) {
+        @include hook-lightbox-button-hover();
+    }
 }
 
 /* OnClick */
 .uk-lightbox-button:active {
-    @if(mixin-exists(hook-lightbox-button-active)) {@include hook-lightbox-button-active();}
+    @if (mixin-exists(hook-lightbox-button-active)) {
+        @include hook-lightbox-button-active();
+    }
 }
 
 
 /* Caption
  ========================================================================== */
 
-.uk-lightbox-caption:empty { display: none; }
+.uk-lightbox-caption:empty {
+    display: none;
+}
 
 
 /* Iframe
@@ -232,7 +274,9 @@ $lightbox-button-hover-color:                    #fff !default;
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-lightbox-misc)) {@include hook-lightbox-misc();}
+@if (mixin-exists(hook-lightbox-misc)) {
+    @include hook-lightbox-misc();
+}
 
 // @mixin hook-lightbox(){}
 // @mixin hook-lightbox-item(){}

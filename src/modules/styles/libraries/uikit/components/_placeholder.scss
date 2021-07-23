@@ -23,23 +23,32 @@ $placeholder-background:                         $global-muted-background !defau
     margin-bottom: $placeholder-margin-vertical;
     padding: $placeholder-padding-vertical $placeholder-padding-horizontal;
     background: $placeholder-background;
-    @if(mixin-exists(hook-placeholder)) {@include hook-placeholder();}
+
+    @if (mixin-exists(hook-placeholder)) {
+        @include hook-placeholder();
+    }
 }
 
 /* Add margin if adjacent element */
-* + .uk-placeholder { margin-top: $placeholder-margin-vertical; }
+* + .uk-placeholder {
+    margin-top: $placeholder-margin-vertical;
+}
 
 /*
  * Remove margin from the last-child
  */
 
-.uk-placeholder > :last-child { margin-bottom: 0; }
+.uk-placeholder > :last-child {
+    margin-bottom: 0;
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-placeholder-misc)) {@include hook-placeholder-misc();}
+@if (mixin-exists(hook-placeholder-misc)) {
+    @include hook-placeholder-misc();
+}
 
 // @mixin hook-placeholder(){}
 // @mixin hook-placeholder-misc(){}

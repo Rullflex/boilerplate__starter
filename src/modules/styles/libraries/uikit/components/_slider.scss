@@ -31,7 +31,10 @@ $slider-container-margin-right:                      -25px !default;
 .uk-slider {
     /* 1 */
     -webkit-tap-highlight-color: transparent;
-    @if(mixin-exists(hook-slider)) {@include hook-slider();}
+
+    @if (mixin-exists(hook-slider)) {
+        @include hook-slider();
+    }
 }
 
 
@@ -42,7 +45,9 @@ $slider-container-margin-right:                      -25px !default;
  * Clip child elements
  */
 
-.uk-slider-container { overflow: hidden; }
+.uk-slider-container {
+    overflow: hidden;
+}
 
 /*
  * Widen container to prevent box-shadows from clipping, `large-box-shadow`
@@ -64,6 +69,7 @@ $slider-container-margin-right:                      -25px !default;
 .uk-slider-items {
     /* 1 */
     will-change: transform;
+
     /* 2 */
     position: relative;
 }
@@ -75,15 +81,19 @@ $slider-container-margin-right:                      -25px !default;
 
 .uk-slider-items:not(.uk-grid) {
     display: flex;
+
     /* 1 */
     margin: 0;
     padding: 0;
     list-style: none;
+
     /* 2 */
     -webkit-touch-callout: none;
 }
 
-.uk-slider-items.uk-grid { flex-wrap: nowrap; }
+.uk-slider-items.uk-grid {
+    flex-wrap: nowrap;
+}
 
 
 /* Item
@@ -99,20 +109,26 @@ $slider-container-margin-right:                      -25px !default;
 .uk-slider-items > * {
     /* 1 */
     flex: none;
+
     /* 2 */
     position: relative;
+
     /* 3 */
     touch-action: pan-y;
 }
 
 /* 4 */
-.uk-slider-items > :focus { outline: none; }
+.uk-slider-items > :focus {
+    outline: none;
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-slider-misc)) {@include hook-slider-misc();}
+@if (mixin-exists(hook-slider-misc)) {
+    @include hook-slider-misc();
+}
 
 // @mixin hook-slider(){}
 // @mixin hook-slider-misc(){}

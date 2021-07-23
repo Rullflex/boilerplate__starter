@@ -17,7 +17,9 @@ $leader-fill-margin-left:                        $global-small-gutter !default;
    Component: Leader
  ========================================================================== */
 
-.uk-leader { overflow: hidden; }
+.uk-leader {
+    overflow: hidden;
+}
 
 /*
  * 1. Place element in text flow
@@ -30,33 +32,48 @@ $leader-fill-margin-left:                        $global-small-gutter !default;
     /* 1 */
     display: inline-block;
     margin-left: $leader-fill-margin-left;
+
     /* 2 */
     width: 0;
+
     /* 3 */
     content: attr(data-fill);
+
     /* 4 */
     white-space: nowrap;
-    @if(mixin-exists(hook-leader)) {@include hook-leader();}
+
+    @if (mixin-exists(hook-leader)) {
+        @include hook-leader();
+    }
 }
 
 /*
  * Hide if media does not match
  */
 
-.uk-leader-fill.uk-leader-hide::after { display: none; }
+.uk-leader-fill.uk-leader-hide::after {
+    display: none;
+}
 
 /*
  * Pass fill character to JS
  */
 
-.uk-leader-fill-content::before { content: '#{$leader-fill-content}'; }
-:root { --uk-leader-fill-content: #{$leader-fill-content}; }
+.uk-leader-fill-content::before {
+    content: '#{$leader-fill-content}';
+}
+
+:root {
+    --uk-leader-fill-content: #{$leader-fill-content};
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-leader-misc)) {@include hook-leader-misc();}
+@if (mixin-exists(hook-leader-misc)) {
+    @include hook-leader-misc();
+}
 
 // @mixin hook-leader(){}
 // @mixin hook-leader-misc(){}
@@ -64,7 +81,6 @@ $leader-fill-margin-left:                        $global-small-gutter !default;
 
 // Inverse
 // ========================================================================
-
 
 
 // @mixin hook-inverse-leader(){}

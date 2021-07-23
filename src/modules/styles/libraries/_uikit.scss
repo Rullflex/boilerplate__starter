@@ -1,11 +1,13 @@
 $global-font-family: $font-family-base;
-$global-emphasis-color: #000;
+$global-emphasis-color: #000000;
 // 2. Import default variables and available mixins.
-@import "uikit/variables";
-@import "uikit/mixins";
+@import 'uikit/variables';
+@import 'uikit/mixins';
 
 // 3. Your custom mixin overwrites.
-@mixin hook-card() { color: #000; }
+@mixin hook-card() {
+    color: #000000;
+}
 
 // 4. Import UIkit.
-@import "uikit/uikit";
+@import 'uikit/uikit';

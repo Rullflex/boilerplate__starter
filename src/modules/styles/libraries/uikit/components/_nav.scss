@@ -66,8 +66,8 @@ $nav-primary-sublist-item-color:                 $global-muted-color !default;
 $nav-primary-sublist-item-hover-color:           $global-color !default;
 $nav-primary-sublist-item-active-color:          $global-emphasis-color !default;
 
-$internal-nav-parent-close-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22#000%22%20stroke-width%3D%221.1%22%20points%3D%2210%201%204%207%2010%2013%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
-$internal-nav-parent-open-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22#000%22%20stroke-width%3D%221.1%22%20points%3D%221%204%207%2010%2013%204%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
+$internal-nav-parent-close-image: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22#000%22%20stroke-width%3D%221.1%22%20points%3D%2210%201%204%207%2010%2013%22%20%2F%3E%0A%3C%2Fsvg%3E' !default;
+$internal-nav-parent-open-image: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22#000%22%20stroke-width%3D%221.1%22%20points%3D%221%204%207%2010%2013%204%22%20%2F%3E%0A%3C%2Fsvg%3E' !default;
 
 
 /* ========================================================================
@@ -96,14 +96,18 @@ $internal-nav-parent-open-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20widt
 }
 
 /* 3 */
-.uk-nav li > a:focus { outline: none; }
+.uk-nav li > a:focus {
+    outline: none;
+}
 
 /*
  * Items
  * Must target `a` elements to exclude other elements (e.g. lists)
  */
 
-.uk-nav > li > a { padding: $nav-item-padding-vertical $nav-item-padding-horizontal; }
+.uk-nav > li > a {
+    padding: $nav-item-padding-vertical $nav-item-padding-horizontal;
+}
 
 
 /* Sublists
@@ -116,37 +120,51 @@ $internal-nav-parent-open-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20widt
 
 ul.uk-nav-sub {
     padding: $nav-sublist-padding-vertical 0 $nav-sublist-padding-vertical $nav-sublist-padding-left;
-    @if(mixin-exists(hook-nav-sub)) {@include hook-nav-sub();}
+
+    @if (mixin-exists(hook-nav-sub)) {
+        @include hook-nav-sub();
+    }
 }
 
 /*
  * Level 3 and deeper
  */
 
-.uk-nav-sub ul { padding-left: $nav-sublist-deeper-padding-left; }
+.uk-nav-sub ul {
+    padding-left: $nav-sublist-deeper-padding-left;
+}
 
 /*
  * Items
  */
 
-.uk-nav-sub a { padding: $nav-sublist-item-padding-vertical 0; }
+.uk-nav-sub a {
+    padding: $nav-sublist-item-padding-vertical 0;
+}
 
 
 /* Parent icon modifier
  ========================================================================== */
 
 .uk-nav-parent-icon > .uk-parent > a::after {
-    content: "";
+    content: '';
     width: $nav-parent-icon-width;
     height: $nav-parent-icon-height;
     float: right;
-    @include svg-fill($internal-nav-parent-close-image, "#000", $nav-parent-icon-color);
+
+    @include svg-fill($internal-nav-parent-close-image, '#000', $nav-parent-icon-color);
+
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    @if(mixin-exists(hook-nav-parent-icon)) {@include hook-nav-parent-icon();}
+
+    @if (mixin-exists(hook-nav-parent-icon)) {
+        @include hook-nav-parent-icon();
+    }
 }
 
-.uk-nav-parent-icon > .uk-parent.uk-open > a::after { @include svg-fill($internal-nav-parent-open-image, "#000", $nav-parent-icon-color); }
+.uk-nav-parent-icon > .uk-parent.uk-open > a::after {
+    @include svg-fill($internal-nav-parent-open-image, '#000', $nav-parent-icon-color);
+}
 
 
 /* Header
@@ -156,10 +174,15 @@ ul.uk-nav-sub {
     padding: $nav-header-padding-vertical $nav-header-padding-horizontal;
     text-transform: $nav-header-text-transform;
     font-size: $nav-header-font-size;
-    @if(mixin-exists(hook-nav-header)) {@include hook-nav-header();}
+
+    @if (mixin-exists(hook-nav-header)) {
+        @include hook-nav-header();
+    }
 }
 
-.uk-nav-header:not(:first-child) { margin-top: $nav-header-margin-top; }
+.uk-nav-header:not(:first-child) {
+    margin-top: $nav-header-margin-top;
+}
 
 
 /* Divider
@@ -167,7 +190,10 @@ ul.uk-nav-sub {
 
 .uk-nav-divider {
     margin: $nav-divider-margin-vertical $nav-divider-margin-horizontal;
-    @if(mixin-exists(hook-nav-divider)) {@include hook-nav-divider();}
+
+    @if (mixin-exists(hook-nav-divider)) {
+        @include hook-nav-divider();
+    }
 }
 
 
@@ -175,7 +201,9 @@ ul.uk-nav-sub {
  ========================================================================== */
 
 .uk-nav-default {
-    @if(mixin-exists(hook-nav-default)) {@include hook-nav-default();}
+    @if (mixin-exists(hook-nav-default)) {
+        @include hook-nav-default();
+    }
 }
 
 /*
@@ -184,20 +212,29 @@ ul.uk-nav-sub {
 
 .uk-nav-default > li > a {
     color: $nav-default-item-color;
-    @if(mixin-exists(hook-nav-default-item)) {@include hook-nav-default-item();}
+
+    @if (mixin-exists(hook-nav-default-item)) {
+        @include hook-nav-default-item();
+    }
 }
 
 /* Hover + Focus */
 .uk-nav-default > li > a:hover,
 .uk-nav-default > li > a:focus {
     color: $nav-default-item-hover-color;
-    @if(mixin-exists(hook-nav-default-item-hover)) {@include hook-nav-default-item-hover();}
+
+    @if (mixin-exists(hook-nav-default-item-hover)) {
+        @include hook-nav-default-item-hover();
+    }
 }
 
 /* Active */
 .uk-nav-default > li.uk-active > a {
     color: $nav-default-item-active-color;
-    @if(mixin-exists(hook-nav-default-item-active)) {@include hook-nav-default-item-active();}
+
+    @if (mixin-exists(hook-nav-default-item-active)) {
+        @include hook-nav-default-item-active();
+    }
 }
 
 /*
@@ -206,7 +243,10 @@ ul.uk-nav-sub {
 
 .uk-nav-default .uk-nav-header {
     color: $nav-default-header-color;
-    @if(mixin-exists(hook-nav-default-header)) {@include hook-nav-default-header();}
+
+    @if (mixin-exists(hook-nav-default-header)) {
+        @include hook-nav-default-header();
+    }
 }
 
 /*
@@ -215,26 +255,37 @@ ul.uk-nav-sub {
 
 .uk-nav-default .uk-nav-divider {
     border-top: $nav-default-divider-border-width solid $nav-default-divider-border;
-    @if(mixin-exists(hook-nav-default-divider)) {@include hook-nav-default-divider();}
+
+    @if (mixin-exists(hook-nav-default-divider)) {
+        @include hook-nav-default-divider();
+    }
 }
 
 /*
  * Sublists
  */
 
-.uk-nav-default .uk-nav-sub a { color: $nav-default-sublist-item-color; }
+.uk-nav-default .uk-nav-sub a {
+    color: $nav-default-sublist-item-color;
+}
 
 .uk-nav-default .uk-nav-sub a:hover,
-.uk-nav-default .uk-nav-sub a:focus { color: $nav-default-sublist-item-hover-color; }
+.uk-nav-default .uk-nav-sub a:focus {
+    color: $nav-default-sublist-item-hover-color;
+}
 
-.uk-nav-default .uk-nav-sub li.uk-active > a { color: $nav-default-sublist-item-active-color; }
+.uk-nav-default .uk-nav-sub li.uk-active > a {
+    color: $nav-default-sublist-item-active-color;
+}
 
 
 /* Primary modifier
  ========================================================================== */
 
 .uk-nav-primary {
-    @if(mixin-exists(hook-nav-primary)) {@include hook-nav-primary();}
+    @if (mixin-exists(hook-nav-primary)) {
+        @include hook-nav-primary();
+    }
 }
 
 /*
@@ -245,20 +296,29 @@ ul.uk-nav-sub {
     font-size: $nav-primary-item-font-size;
     line-height: $nav-primary-item-line-height;
     color: $nav-primary-item-color;
-    @if(mixin-exists(hook-nav-primary-item)) {@include hook-nav-primary-item();}
+
+    @if (mixin-exists(hook-nav-primary-item)) {
+        @include hook-nav-primary-item();
+    }
 }
 
 /* Hover + Focus */
 .uk-nav-primary > li > a:hover,
 .uk-nav-primary > li > a:focus {
     color: $nav-primary-item-hover-color;
-    @if(mixin-exists(hook-nav-primary-item-hover)) {@include hook-nav-primary-item-hover();}
+
+    @if (mixin-exists(hook-nav-primary-item-hover)) {
+        @include hook-nav-primary-item-hover();
+    }
 }
 
 /* Active */
 .uk-nav-primary > li.uk-active > a {
     color: $nav-primary-item-active-color;
-    @if(mixin-exists(hook-nav-primary-item-active)) {@include hook-nav-primary-item-active();}
+
+    @if (mixin-exists(hook-nav-primary-item-active)) {
+        @include hook-nav-primary-item-active();
+    }
 }
 
 /*
@@ -267,7 +327,10 @@ ul.uk-nav-sub {
 
 .uk-nav-primary .uk-nav-header {
     color: $nav-primary-header-color;
-    @if(mixin-exists(hook-nav-primary-header)) {@include hook-nav-primary-header();}
+
+    @if (mixin-exists(hook-nav-primary-header)) {
+        @include hook-nav-primary-header();
+    }
 }
 
 /*
@@ -276,38 +339,55 @@ ul.uk-nav-sub {
 
 .uk-nav-primary .uk-nav-divider {
     border-top: $nav-primary-divider-border-width solid $nav-primary-divider-border;
-    @if(mixin-exists(hook-nav-primary-divider)) {@include hook-nav-primary-divider();}
+
+    @if (mixin-exists(hook-nav-primary-divider)) {
+        @include hook-nav-primary-divider();
+    }
 }
 
 /*
  * Sublists
  */
 
-.uk-nav-primary .uk-nav-sub a { color: $nav-primary-sublist-item-color; }
+.uk-nav-primary .uk-nav-sub a {
+    color: $nav-primary-sublist-item-color;
+}
 
 .uk-nav-primary .uk-nav-sub a:hover,
-.uk-nav-primary .uk-nav-sub a:focus { color: $nav-primary-sublist-item-hover-color; }
+.uk-nav-primary .uk-nav-sub a:focus {
+    color: $nav-primary-sublist-item-hover-color;
+}
 
-.uk-nav-primary .uk-nav-sub li.uk-active > a { color: $nav-primary-sublist-item-active-color; }
+.uk-nav-primary .uk-nav-sub li.uk-active > a {
+    color: $nav-primary-sublist-item-active-color;
+}
 
 
 /* Alignment modifier
  ========================================================================== */
 
-.uk-nav-center { text-align: center; }
+.uk-nav-center {
+    text-align: center;
+}
 
 /* Sublists */
 .uk-nav-center .uk-nav-sub,
-.uk-nav-center .uk-nav-sub ul { padding-left: 0; }
+.uk-nav-center .uk-nav-sub ul {
+    padding-left: 0;
+}
 
 /* Parent icon modifier  */
-.uk-nav-center.uk-nav-parent-icon > .uk-parent > a::after { position: absolute; }
+.uk-nav-center.uk-nav-parent-icon > .uk-parent > a::after {
+    position: absolute;
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-nav-misc)) {@include hook-nav-misc();}
+@if (mixin-exists(hook-nav-misc)) {
+    @include hook-nav-misc();
+}
 
 // @mixin hook-nav-sub(){}
 // @mixin hook-nav-parent-icon(){}
@@ -349,7 +429,6 @@ $inverse-nav-primary-divider-border:             $inverse-global-border !default
 $inverse-nav-primary-sublist-item-color:         $inverse-global-muted-color !default;
 $inverse-nav-primary-sublist-item-hover-color:   $inverse-global-color !default;
 $inverse-nav-primary-sublist-item-active-color:  $inverse-global-emphasis-color !default;
-
 
 
 // @mixin hook-inverse-nav-parent-icon(){}

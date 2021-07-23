@@ -29,21 +29,28 @@ $overlay-primary-color-mode:                     light !default;
 
 .uk-overlay {
     padding: $overlay-padding-vertical $overlay-padding-horizontal;
-    @if(mixin-exists(hook-overlay)) {@include hook-overlay();}
+
+    @if (mixin-exists(hook-overlay)) {
+        @include hook-overlay();
+    }
 }
 
 /*
  * Remove margin from the last-child
  */
 
-.uk-overlay > :last-child { margin-bottom: 0; }
+.uk-overlay > :last-child {
+    margin-bottom: 0;
+}
 
 
 /* Icon
  ========================================================================== */
 
 .uk-overlay-icon {
-    @if(mixin-exists(hook-overlay-icon)) {@include hook-overlay-icon();}
+    @if (mixin-exists(hook-overlay-icon)) {
+        @include hook-overlay-icon();
+    }
 }
 
 
@@ -56,7 +63,10 @@ $overlay-primary-color-mode:                     light !default;
 
 .uk-overlay-default {
     background: $overlay-default-background;
-    @if(mixin-exists(hook-overlay-default)) {@include hook-overlay-default();}
+
+    @if (mixin-exists(hook-overlay-default)) {
+        @include hook-overlay-default();
+    }
 }
 
 /*
@@ -65,18 +75,32 @@ $overlay-primary-color-mode:                     light !default;
 
 .uk-overlay-primary {
     background: $overlay-primary-background;
-    @if(mixin-exists(hook-overlay-primary)) {@include hook-overlay-primary();}
+
+    @if (mixin-exists(hook-overlay-primary)) {
+        @include hook-overlay-primary();
+    }
 }
 
 // Color Mode
-@if ( $overlay-primary-color-mode == light ) { .uk-overlay-primary { @extend .uk-light !optional;} }
-@if ( $overlay-primary-color-mode == dark ) { .uk-overlay-primary { @extend .uk-dark !optional;} }
+@if ( $overlay-primary-color-mode == light ) {
+    .uk-overlay-primary {
+        @extend .uk-light !optional;
+    }
+}
+
+@if ( $overlay-primary-color-mode == dark ) {
+    .uk-overlay-primary {
+        @extend .uk-dark !optional;
+    }
+}
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-overlay-misc)) {@include hook-overlay-misc();}
+@if (mixin-exists(hook-overlay-misc)) {
+    @include hook-overlay-misc();
+}
 
 // @mixin hook-overlay(){}
 // @mixin hook-overlay-icon(){}

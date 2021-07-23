@@ -2,7 +2,10 @@ extends modules/layout/_layout
 
 prepend head
 	title Title your page
-	meta(name="description", content="Описание страницы")
+	meta(name="description" content="Описание страницы")
 
 block content
-	main.main
+	.container
+		//- +Slider.s8__slider
+			+SliderItem.s8__slider-item.s8__slider-item-1
+				h1!= breakpoints.lg

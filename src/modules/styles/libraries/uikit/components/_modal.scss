@@ -27,7 +27,7 @@
 // ========================================================================
 
 $modal-z-index:                                  $global-z-index + 10 !default;
-$modal-background:                               rgba(0,0,0,0.6) !default;
+$modal-background:                               rgba(0, 0, 0, 0.6) !default;
 
 $modal-padding-horizontal:                       15px !default;
 $modal-padding-horizontal-s:                     $global-gutter !default;
@@ -79,6 +79,7 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 .uk-modal {
     /* 1 */
     display: none;
+
     /* 2 */
     position: fixed;
     top: 0;
@@ -86,25 +87,31 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
     bottom: 0;
     left: 0;
     z-index: $modal-z-index;
+
     /* 3 */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+
     /* 4 */
     // padding: $modal-padding-vertical $modal-padding-horizontal;
     padding: 0;
+
     /* 5 */
     background: $modal-background;
+
     /* 6 */
     opacity: 0;
     transition: opacity 0.15s linear;
-    @if(mixin-exists(hook-modal)) {@include hook-modal();}
+
+    @if (mixin-exists(hook-modal)) {
+        @include hook-modal();
+    }
 }
 
 /* Phone landscape and bigger */
 @media (min-width: $breakpoint-small) {
 
     // .uk-modal { padding: $modal-padding-vertical-s $modal-padding-horizontal-s; }
-
 }
 
 /* Tablet landscape and bigger */
@@ -114,14 +121,15 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
     //     padding-left: $modal-padding-horizontal-m;
     //     padding-right: $modal-padding-horizontal-m;
     // }
-
 }
 
 /*
  * Open
  */
 
-.uk-modal.uk-open { opacity: 1; }
+.uk-modal.uk-open {
+    opacity: 1;
+}
 
 
 /* Page
@@ -131,7 +139,9 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
  * Prevent scrollbars
  */
 
-.uk-modal-page { overflow: hidden; }
+.uk-modal-page {
+    overflow: hidden;
+}
 
 
 /* Dialog
@@ -149,20 +159,27 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 .uk-modal-dialog {
     /* 1 */
     position: relative;
+
     /* 2 */
     box-sizing: border-box;
     margin: 0 auto;
     // width: $modal-dialog-width;
+
     /* 3 */
     max-width: unquote('calc(100% - 0.01px)') !important;
+
     /* 4 */
     background: $modal-dialog-background;
+
     /* 5 */
     opacity: 0;
     transform: translateY(-100px);
     transition: 0.3s ease-in-out;
     transition-property: opacity, transform;
-    @if(mixin-exists(hook-modal-dialog)) {@include hook-modal-dialog();}
+
+    @if (mixin-exists(hook-modal-dialog)) {
+        @include hook-modal-dialog();
+    }
 }
 
 /*
@@ -183,7 +200,9 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
  * Take the same size as the Container component
  */
 
-.uk-modal-container .uk-modal-dialog { width: $modal-container-width; }
+.uk-modal-container .uk-modal-dialog {
+    width: $modal-container-width;
+}
 
 /*
  * Full size
@@ -203,7 +222,10 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
     width: 100%;
     max-width: 100%;
     transform: translateY(0);
-    @if(mixin-exists(hook-modal-full)) {@include hook-modal-full();}
+
+    @if (mixin-exists(hook-modal-full)) {
+        @include hook-modal-full();
+    }
 }
 
 
@@ -213,21 +235,30 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 .uk-modal-body {
     display: flow-root;
     padding: $modal-body-padding-vertical $modal-body-padding-horizontal;
-    @if(mixin-exists(hook-modal-body)) {@include hook-modal-body();}
+
+    @if (mixin-exists(hook-modal-body)) {
+        @include hook-modal-body();
+    }
 }
 
 .uk-modal-header {
     display: flow-root;
     padding: $modal-header-padding-vertical $modal-header-padding-horizontal;
     background: $modal-header-background;
-    @if(mixin-exists(hook-modal-header)) {@include hook-modal-header();}
+
+    @if (mixin-exists(hook-modal-header)) {
+        @include hook-modal-header();
+    }
 }
 
 .uk-modal-footer {
     display: flow-root;
     padding: $modal-footer-padding-vertical $modal-footer-padding-horizontal;
     background: $modal-footer-background;
-    @if(mixin-exists(hook-modal-footer)) {@include hook-modal-footer();}
+
+    @if (mixin-exists(hook-modal-footer)) {
+        @include hook-modal-footer();
+    }
 }
 
 /*
@@ -236,7 +267,9 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 
 .uk-modal-body > :last-child,
 .uk-modal-header > :last-child,
-.uk-modal-footer > :last-child { margin-bottom: 0; }
+.uk-modal-footer > :last-child {
+    margin-bottom: 0;
+}
 
 
 /* Title
@@ -245,7 +278,10 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 .uk-modal-title {
     font-size: $modal-title-font-size;
     line-height: $modal-title-line-height;
-    @if(mixin-exists(hook-modal-title)) {@include hook-modal-title();}
+
+    @if (mixin-exists(hook-modal-title)) {
+        @include hook-modal-title();
+    }
 }
 
 
@@ -259,21 +295,28 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
     top: $modal-close-position;
     right: $modal-close-position;
     padding: $modal-close-padding;
-    @if(mixin-exists(hook-modal-close)) {@include hook-modal-close();}
+
+    @if (mixin-exists(hook-modal-close)) {
+        @include hook-modal-close();
+    }
 }
 
 /*
  * Remove margin from adjacent element
  */
 
-[class*='uk-modal-close-']:first-child + * { margin-top: 0; }
+[class*='uk-modal-close-']:first-child + * {
+    margin-top: 0;
+}
 
 /*
  * Hover
  */
 
 [class*='uk-modal-close-']:hover {
-    @if(mixin-exists(hook-modal-close-hover)) {@include hook-modal-close-hover();}
+    @if (mixin-exists(hook-modal-close-hover)) {
+        @include hook-modal-close-hover();
+    }
 }
 
 /*
@@ -281,11 +324,15 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
  */
 
 .uk-modal-close-default {
-    @if(mixin-exists(hook-modal-close-default)) {@include hook-modal-close-default();}
+    @if (mixin-exists(hook-modal-close-default)) {
+        @include hook-modal-close-default();
+    }
 }
 
 .uk-modal-close-default:hover {
-    @if(mixin-exists(hook-modal-close-default-hover)) {@include hook-modal-close-default-hover();}
+    @if (mixin-exists(hook-modal-close-default-hover)) {
+        @include hook-modal-close-default-hover();
+    }
 }
 
 /*
@@ -295,27 +342,32 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
 
 .uk-modal-close-outside {
     top: $modal-close-outside-position;
+
     /* 1 */
     right: (-$modal-close-padding);
     transform: translate(0, -($modal-close-outside-translate));
     color: $modal-close-outside-color;
-    @if(mixin-exists(hook-modal-close-outside)) {@include hook-modal-close-outside();}
+
+    @if (mixin-exists(hook-modal-close-outside)) {
+        @include hook-modal-close-outside();
+    }
 }
 
 .uk-modal-close-outside:hover {
     color: $modal-close-outside-hover-color;
-    @if(mixin-exists(hook-modal-close-outside-hover)) {@include hook-modal-close-outside-hover();}
+
+    @if (mixin-exists(hook-modal-close-outside-hover)) {
+        @include hook-modal-close-outside-hover();
+    }
 }
 
 /* Tablet landscape and bigger */
 @media (min-width: $breakpoint-medium) {
-
     /* 1 */
     .uk-modal-close-outside {
         right: $modal-close-outside-position;
         transform: translate($modal-close-outside-translate, -($modal-close-outside-translate));
     }
-
 }
 
 /*
@@ -323,18 +375,24 @@ $modal-close-outside-hover-color:                $global-inverse-color !default;
  */
 
 .uk-modal-close-full {
-    @if(mixin-exists(hook-modal-close-full)) {@include hook-modal-close-full();}
+    @if (mixin-exists(hook-modal-close-full)) {
+        @include hook-modal-close-full();
+    }
 }
 
 .uk-modal-close-full:hover {
-    @if(mixin-exists(hook-modal-close-full-hover)) {@include hook-modal-close-full-hover();}
+    @if (mixin-exists(hook-modal-close-full-hover)) {
+        @include hook-modal-close-full-hover();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-modal-misc)) {@include hook-modal-misc();}
+@if (mixin-exists(hook-modal-misc)) {
+    @include hook-modal-misc();
+}
 
 // @mixin hook-modal(){}
 // @mixin hook-modal-dialog(){}

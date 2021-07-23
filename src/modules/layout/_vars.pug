@@ -1,4 +1,4 @@
-//- mode - development / production
+//- env.NODE_ENV - development / production
 
 //- Links 
 
@@ -28,14 +28,7 @@
 - const scriptsPath = `./assets/scripts/main.min.js`
 
 //- grid breakpoints
--
-    const breakpoints = {
-        xs: 0,
-        sm: 420,
-        md: 768,
-        lg: 1200
-    }
-
+- const breakpoints = JSON.parse(env.grid_breakpoints)
 
 //- colors 
 

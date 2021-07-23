@@ -28,7 +28,10 @@ $marker-hover-color:                              $global-inverse-color !default
     padding: $marker-padding;
     background: $marker-background;
     color: $marker-color;
-    @if(mixin-exists(hook-marker)) {@include hook-marker();}
+
+    @if (mixin-exists(hook-marker)) {
+        @include hook-marker();
+    }
 }
 
 /* Hover + Focus */
@@ -36,14 +39,19 @@ $marker-hover-color:                              $global-inverse-color !default
 .uk-marker:focus {
     color: $marker-hover-color;
     outline: none;
-    @if(mixin-exists(hook-marker-hover)) {@include hook-marker-hover();}
+
+    @if (mixin-exists(hook-marker-hover)) {
+        @include hook-marker-hover();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-marker-misc)) {@include hook-marker-misc();}
+@if (mixin-exists(hook-marker-misc)) {
+    @include hook-marker-misc();
+}
 
 // @mixin hook-marker(){}
 // @mixin hook-marker-hover(){}
@@ -56,7 +64,6 @@ $marker-hover-color:                              $global-inverse-color !default
 $inverse-marker-background:                   $global-muted-background !default;
 $inverse-marker-color:                        $global-color !default;
 $inverse-marker-hover-color:                  $global-color !default;
-
 
 
 // @mixin hook-inverse-marker(){}

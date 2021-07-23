@@ -28,9 +28,9 @@ $base-code-font-size:                            $global-small-font-size !defaul
 $base-code-font-family:                          Consolas, monaco, monospace !default;
 $base-code-color:                                $global-danger-background !default;
 $base-em-color:                                  $global-danger-background !default;
-$base-ins-background:                            #ffd !default;
+$base-ins-background:                            #ffffdd !default;
 $base-ins-color:                                 $global-color !default;
-$base-mark-background:                           #ffd !default;
+$base-mark-background:                           #ffffdd !default;
 $base-mark-color:                                $global-color !default;
 $base-quote-font-style:                          italic !default;
 $base-small-font-size:                           80% !default;
@@ -76,7 +76,7 @@ $base-pre-line-height:                           1.5 !default;
 $base-pre-font-family:                           $base-code-font-family !default;
 $base-pre-color:                                 $global-color !default;
 
-$base-selection-background:                      #39f !default;
+$base-selection-background:                      #3399ff !default;
 $base-selection-color:                           $global-inverse-color !default;
 
 
@@ -97,19 +97,26 @@ html {
     font-size: $base-body-font-size;
     font-weight: $base-body-font-weight;
     line-height: $base-body-line-height;
+
     /* 2 */
     -webkit-text-size-adjust: 100%;
+
     /* 3 */
     background: $base-body-background;
     color: $base-body-color;
-    @if(mixin-exists(hook-base-body)) {@include hook-base-body();}
+
+    @if (mixin-exists(hook-base-body)) {
+        @include hook-base-body();
+    }
 }
 
 /*
  * Remove the margin in all browsers.
  */
 
-body { margin: 0; }
+body {
+    margin: 0;
+}
 
 
 /* Links
@@ -120,7 +127,9 @@ body { margin: 0; }
  */
 
 a:active,
-a:hover { outline: none; }
+a:hover {
+    outline: none;
+}
 
 /*
  * Style
@@ -131,7 +140,10 @@ a,
     color: $base-link-color;
     text-decoration: $base-link-text-decoration;
     cursor: pointer;
-    @if(mixin-exists(hook-base-link)) {@include hook-base-link();}
+
+    @if (mixin-exists(hook-base-link)) {
+        @include hook-base-link();
+    }
 }
 
 a:hover,
@@ -140,7 +152,10 @@ a:hover,
 .uk-link-toggle:focus .uk-link {
     color: $base-link-hover-color;
     text-decoration: $base-link-hover-text-decoration;
-    @if(mixin-exists(hook-base-link-hover)) {@include hook-base-link-hover();}
+
+    @if (mixin-exists(hook-base-link-hover)) {
+        @include hook-base-link-hover();
+    }
 }
 
 
@@ -155,6 +170,7 @@ a:hover,
 abbr[title] {
     /* 1 */
     text-decoration: underline dotted;
+
     /* 2 */
     -webkit-text-decoration-style: dotted;
 }
@@ -164,7 +180,9 @@ abbr[title] {
  */
 
 b,
-strong { font-weight: $base-strong-font-weight; }
+strong {
+    font-weight: $base-strong-font-weight;
+}
 
 /*
  * 1. Consolas has a better baseline in running text compared to `Courier`
@@ -177,19 +195,26 @@ strong { font-weight: $base-strong-font-weight; }
 :not(pre) > samp {
     /* 1 */
     font-family: $base-code-font-family;
+
     /* 2 */
     font-size: $base-code-font-size;
+
     /* 3 */
     color: $base-code-color;
     white-space: nowrap;
-    @if(mixin-exists(hook-base-code)) {@include hook-base-code();}
+
+    @if (mixin-exists(hook-base-code)) {
+        @include hook-base-code();
+    }
 }
 
 /*
  * Emphasize
  */
 
-em { color: $base-em-color; }
+em {
+    color: $base-em-color;
+}
 
 /*
  * Insert
@@ -214,13 +239,17 @@ mark {
  * Quote
  */
 
-q { font-style: $base-quote-font-style; }
+q {
+    font-style: $base-quote-font-style;
+}
 
 /*
  * Add the correct font size in all browsers.
  */
 
-small { font-size: $base-small-font-size; }
+small {
+    font-size: $base-small-font-size;
+}
 
 /*
  * Prevents `sub` and `sup` affecting `line-height` in all browsers.
@@ -234,8 +263,13 @@ sup {
     vertical-align: baseline;
 }
 
-sup { top: -0.5em; }
-sub { bottom: -0.25em; }
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
 
 
 /* Embedded content
@@ -250,7 +284,9 @@ canvas,
 iframe,
 img,
 svg,
-video { vertical-align: middle; }
+video {
+    vertical-align: middle;
+}
 
 /*
  * 1. Add responsiveness.
@@ -264,28 +300,30 @@ img,
 video {
     /* 1 */
     max-width: 100%;
+
     /* 2 */
     height: auto;
+
     /* 3 */
     box-sizing: border-box;
 }
 
 /* 4 */
 @supports (display: block) {
-
-   svg {
+    svg {
         max-width: 100%;
         height: auto;
         box-sizing: border-box;
     }
-
 }
 
 /*
  * Hide the overflow in IE.
  */
 
-svg:not(:root) { overflow: hidden; }
+svg:not(:root) {
+    overflow: hidden;
+}
 
 /*
  * 1. Fix lazy loading images if parent element is set to `display: inline` and has `overflow: hidden`.
@@ -296,6 +334,7 @@ svg:not(:root) { overflow: hidden; }
 img:not([src]) {
     /* 1 */
     min-width: 1px;
+
     /* 2 */
     visibility: hidden;
 }
@@ -305,7 +344,9 @@ img:not([src]) {
  * Remove border in all browsers
  */
 
-iframe { border: 0; }
+iframe {
+    border: 0;
+}
 
 
 /* Block elements
@@ -322,7 +363,9 @@ dl,
 pre,
 address,
 fieldset,
-figure { margin: 0 0 $base-margin-vertical 0; }
+figure {
+    margin: 0 0 $base-margin-vertical 0;
+}
 
 /* Add margin if adjacent element */
 * + p,
@@ -332,18 +375,26 @@ figure { margin: 0 0 $base-margin-vertical 0; }
 * + pre,
 * + address,
 * + fieldset,
-* + figure { margin-top: $base-margin-vertical; }
+* + figure {
+    margin-top: $base-margin-vertical;
+}
 
 
 /* Headings
  ========================================================================== */
 
-h1, .uk-h1,
-h2, .uk-h2,
-h3, .uk-h3,
-h4, .uk-h4,
-h5, .uk-h5,
-h6, .uk-h6,
+h1,
+.uk-h1,
+h2,
+.uk-h2,
+h3,
+.uk-h3,
+h4,
+.uk-h4,
+h5,
+.uk-h5,
+h6,
+.uk-h6,
 .uk-heading-small,
 .uk-heading-medium,
 .uk-heading-large,
@@ -354,68 +405,108 @@ h6, .uk-h6,
     font-weight: $base-heading-font-weight;
     color: $base-heading-color;
     text-transform: $base-heading-text-transform;
-    @if(mixin-exists(hook-base-heading)) {@include hook-base-heading();}
+
+    @if (mixin-exists(hook-base-heading)) {
+        @include hook-base-heading();
+    }
 }
 
 /* Add margin if adjacent element */
-* + h1, * + .uk-h1,
-* + h2, * + .uk-h2,
-* + h3, * + .uk-h3,
-* + h4, * + .uk-h4,
-* + h5, * + .uk-h5,
-* + h6, * + .uk-h6,
+* + h1,
+* + .uk-h1,
+* + h2,
+* + .uk-h2,
+* + h3,
+* + .uk-h3,
+* + h4,
+* + .uk-h4,
+* + h5,
+* + .uk-h5,
+* + h6,
+* + .uk-h6,
 * + .uk-heading-small,
 * + .uk-heading-medium,
 * + .uk-heading-large,
 * + .uk-heading-xlarge,
-* + .uk-heading-2xlarge { margin-top: $base-heading-margin-top; }
+* + .uk-heading-2xlarge {
+    margin-top: $base-heading-margin-top;
+}
 
 /*
  * Sizes
  */
 
-h1, .uk-h1 {
+h1,
+.uk-h1 {
     font-size: $base-h1-font-size;
     line-height: $base-h1-line-height;
-    @if(mixin-exists(hook-base-h1)) {@include hook-base-h1();}
+
+    @if (mixin-exists(hook-base-h1)) {
+        @include hook-base-h1();
+    }
 }
 
-h2, .uk-h2 {
+h2,
+.uk-h2 {
     font-size: $base-h2-font-size;
     line-height: $base-h2-line-height;
-    @if(mixin-exists(hook-base-h2)) {@include hook-base-h2();}
+
+    @if (mixin-exists(hook-base-h2)) {
+        @include hook-base-h2();
+    }
 }
 
-h3, .uk-h3 {
+h3,
+.uk-h3 {
     font-size: $base-h3-font-size;
     line-height: $base-h3-line-height;
-    @if(mixin-exists(hook-base-h3)) {@include hook-base-h3();}
+
+    @if (mixin-exists(hook-base-h3)) {
+        @include hook-base-h3();
+    }
 }
 
-h4, .uk-h4 {
+h4,
+.uk-h4 {
     font-size: $base-h4-font-size;
     line-height: $base-h4-line-height;
-    @if(mixin-exists(hook-base-h4)) {@include hook-base-h4();}
+
+    @if (mixin-exists(hook-base-h4)) {
+        @include hook-base-h4();
+    }
 }
 
-h5, .uk-h5 {
+h5,
+.uk-h5 {
     font-size: $base-h5-font-size;
     line-height: $base-h5-line-height;
-    @if(mixin-exists(hook-base-h5)) {@include hook-base-h5();}
+
+    @if (mixin-exists(hook-base-h5)) {
+        @include hook-base-h5();
+    }
 }
 
-h6, .uk-h6 {
+h6,
+.uk-h6 {
     font-size: $base-h6-font-size;
     line-height: $base-h6-line-height;
-    @if(mixin-exists(hook-base-h6)) {@include hook-base-h6();}
+
+    @if (mixin-exists(hook-base-h6)) {
+        @include hook-base-h6();
+    }
 }
 
 /* Tablet landscape and bigger */
 @media (min-width: $breakpoint-medium) {
+    h1,
+    .uk-h1 {
+        font-size: $base-h1-font-size-m;
+    }
 
-    h1, .uk-h1 { font-size: $base-h1-font-size-m; }
-    h2, .uk-h2 { font-size: $base-h2-font-size-m; }
-
+    h2,
+    .uk-h2 {
+        font-size: $base-h2-font-size-m;
+    }
 }
 
 
@@ -423,7 +514,9 @@ h6, .uk-h6 {
  ========================================================================== */
 
 ul,
-ol { padding-left: $base-list-padding-left; }
+ol {
+    padding-left: $base-list-padding-left;
+}
 
 /*
  * Reset margin for nested lists
@@ -432,14 +525,21 @@ ol { padding-left: $base-list-padding-left; }
 ul > li > ul,
 ul > li > ol,
 ol > li > ol,
-ol > li > ul { margin: 0; }
+ol > li > ul {
+    margin: 0;
+}
 
 
 /* Description lists
  ========================================================================== */
 
-dt { font-weight: bold; }
-dd { margin-left: 0; }
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
 
 
 /* Horizontal rules
@@ -451,27 +551,37 @@ dd { margin-left: 0; }
  * 3. Style
  */
 
-hr, .uk-hr {
+hr,
+.uk-hr {
     /* 1 */
     overflow: visible;
+
     /* 2 */
     text-align: inherit;
+
     /* 3 */
     margin: 0 0 $base-hr-margin-vertical 0;
     border: 0;
     border-top: $base-hr-border-width solid $base-hr-border;
-    @if(mixin-exists(hook-base-hr)) {@include hook-base-hr();}
+
+    @if (mixin-exists(hook-base-hr)) {
+        @include hook-base-hr();
+    }
 }
 
 /* Add margin if adjacent element */
 * + hr,
-* + .uk-hr { margin-top: $base-hr-margin-vertical }
+* + .uk-hr {
+    margin-top: $base-hr-margin-vertical;
+}
 
 
 /* Address
  ========================================================================== */
 
-address { font-style: normal; }
+address {
+    font-style: normal;
+}
 
 
 /* Blockquotes
@@ -482,23 +592,33 @@ blockquote {
     font-size: $base-blockquote-font-size;
     line-height: $base-blockquote-line-height;
     font-style: $base-blockquote-font-style;
-    @if(mixin-exists(hook-base-blockquote)) {@include hook-base-blockquote();}
+
+    @if (mixin-exists(hook-base-blockquote)) {
+        @include hook-base-blockquote();
+    }
 }
 
 /* Add margin if adjacent element */
-* + blockquote { margin-top: $base-blockquote-margin-vertical; }
+* + blockquote {
+    margin-top: $base-blockquote-margin-vertical;
+}
 
 /*
  * Content
  */
 
-blockquote p:last-of-type { margin-bottom: 0; }
+blockquote p:last-of-type {
+    margin-bottom: 0;
+}
 
 blockquote footer {
-    margin-top:  $base-blockquote-footer-margin-top;
+    margin-top: $base-blockquote-footer-margin-top;
     font-size: $base-blockquote-footer-font-size;
     line-height: $base-blockquote-footer-line-height;
-    @if(mixin-exists(hook-base-blockquote-footer)) {@include hook-base-blockquote-footer();}
+
+    @if (mixin-exists(hook-base-blockquote-footer)) {
+        @include hook-base-blockquote-footer();
+    }
 }
 
 
@@ -510,16 +630,22 @@ blockquote footer {
  */
 
 pre {
-    font: $base-pre-font-size unquote("/") $base-pre-line-height $base-pre-font-family;
+    font: $base-pre-font-size unquote('/') $base-pre-line-height $base-pre-font-family;
     color: $base-pre-color;
     -moz-tab-size: 4;
     tab-size: 4;
+
     /* 1 */
     overflow: auto;
-    @if(mixin-exists(hook-base-pre)) {@include hook-base-pre();}
+
+    @if (mixin-exists(hook-base-pre)) {
+        @include hook-base-pre();
+    }
 }
 
-pre code { font-family: $base-pre-font-family; }
+pre code {
+    font-family: $base-pre-font-family;
+}
 
 
 /* Selection pseudo-element
@@ -549,13 +675,17 @@ main { /* 2 */
  * Add the correct display in all browsers.
  */
 
-summary { display: list-item; }
+summary {
+    display: list-item;
+}
 
 /*
  * Add the correct display in IE.
  */
 
-template { display: none; }
+template {
+    display: none;
+}
 
 
 /* Pass media breakpoints to JS
@@ -565,10 +695,21 @@ template { display: none; }
  * Breakpoints
  */
 
-.uk-breakpoint-s::before  { content: '#{$breakpoint-small}'; }
-.uk-breakpoint-m::before  { content: '#{$breakpoint-medium}'; }
-.uk-breakpoint-l::before  { content: '#{$breakpoint-large}'; }
-.uk-breakpoint-xl::before { content: '#{$breakpoint-xlarge}'; }
+.uk-breakpoint-s::before {
+    content: '#{$breakpoint-small}';
+}
+
+.uk-breakpoint-m::before {
+    content: '#{$breakpoint-medium}';
+}
+
+.uk-breakpoint-l::before {
+    content: '#{$breakpoint-large}';
+}
+
+.uk-breakpoint-xl::before {
+    content: '#{$breakpoint-xlarge}';
+}
 
 :root {
     --uk-breakpoint-s: #{$breakpoint-small};
@@ -580,7 +721,9 @@ template { display: none; }
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-base-misc)) {@include hook-base-misc();}
+@if (mixin-exists(hook-base-misc)) {
+    @include hook-base-misc();
+}
 
 // @mixin hook-base-body(){}
 // @mixin hook-base-link(){}
@@ -610,7 +753,6 @@ $inverse-base-code-color:                       $inverse-global-color !default;
 $inverse-base-em-color:                         $inverse-global-emphasis-color !default;
 $inverse-base-heading-color:                    $inverse-global-emphasis-color !default;
 $inverse-base-hr-border:                        $inverse-global-border !default;
-
 
 
 // @mixin hook-inverse-base-link(){}

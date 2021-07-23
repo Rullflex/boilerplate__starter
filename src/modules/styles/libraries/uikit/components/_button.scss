@@ -98,34 +98,48 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button {
     /* 1 */
     margin: 0;
+
     /* 2 */
     border: none;
+
     /* 3 */
     overflow: visible;
+
     /* 4 */
     font: inherit;
     color: inherit;
+
     /* 5 */
     text-transform: none;
+
     /* 6 */
     -webkit-appearance: none;
     border-radius: 0;
+
     /* 7 */
     display: inline-block;
     box-sizing: border-box;
     padding: 0 $button-padding-horizontal;
     vertical-align: middle;
     font-size: $button-font-size;
+
     /* 8 */
     line-height: $button-line-height;
+
     /* 9 */
     text-align: center;
+
     /* 10 */
     text-decoration: none;
-    @if(mixin-exists(hook-button)) {@include hook-button();}
+
+    @if (mixin-exists(hook-button)) {
+        @include hook-button();
+    }
 }
 
-.uk-button:not(:disabled) { cursor: pointer; }
+.uk-button:not(:disabled) {
+    cursor: pointer;
+}
 
 /*
  * Remove the inner border and padding in Firefox.
@@ -140,19 +154,27 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button:hover {
     /* 9 */
     text-decoration: none;
-    @if(mixin-exists(hook-button-hover)) {@include hook-button-hover();}
+
+    @if (mixin-exists(hook-button-hover)) {
+        @include hook-button-hover();
+    }
 }
 
 /* Focus */
 .uk-button:focus {
     outline: none;
-    @if(mixin-exists(hook-button-focus)) {@include hook-button-focus();}
+
+    @if (mixin-exists(hook-button-focus)) {
+        @include hook-button-focus();
+    }
 }
 
 /* OnClick + Active */
 .uk-button:active,
 .uk-button.uk-active {
-    @if(mixin-exists(hook-button-active)) {@include hook-button-active();}
+    @if (mixin-exists(hook-button-active)) {
+        @include hook-button-active();
+    }
 }
 
 
@@ -166,7 +188,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-default {
     background-color: $button-default-background;
     color: $button-default-color;
-    @if(mixin-exists(hook-button-default)) {@include hook-button-default();}
+
+    @if (mixin-exists(hook-button-default)) {
+        @include hook-button-default();
+    }
 }
 
 /* Hover + Focus */
@@ -174,7 +199,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-default:focus {
     background-color: $button-default-hover-background;
     color: $button-default-hover-color;
-    @if(mixin-exists(hook-button-default-hover)) {@include hook-button-default-hover();}
+
+    @if (mixin-exists(hook-button-default-hover)) {
+        @include hook-button-default-hover();
+    }
 }
 
 /* OnClick + Active */
@@ -182,7 +210,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-default.uk-active {
     background-color: $button-default-active-background;
     color: $button-default-active-color;
-    @if(mixin-exists(hook-button-default-active)) {@include hook-button-default-active();}
+
+    @if (mixin-exists(hook-button-default-active)) {
+        @include hook-button-default-active();
+    }
 }
 
 /*
@@ -192,7 +223,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-primary {
     background-color: $button-primary-background;
     color: $button-primary-color;
-    @if(mixin-exists(hook-button-primary)) {@include hook-button-primary();}
+
+    @if (mixin-exists(hook-button-primary)) {
+        @include hook-button-primary();
+    }
 }
 
 /* Hover + Focus */
@@ -200,7 +234,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-primary:focus {
     background-color: $button-primary-hover-background;
     color: $button-primary-hover-color;
-    @if(mixin-exists(hook-button-primary-hover)) {@include hook-button-primary-hover();}
+
+    @if (mixin-exists(hook-button-primary-hover)) {
+        @include hook-button-primary-hover();
+    }
 }
 
 /* OnClick + Active */
@@ -208,7 +245,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-primary.uk-active {
     background-color: $button-primary-active-background;
     color: $button-primary-active-color;
-    @if(mixin-exists(hook-button-primary-active)) {@include hook-button-primary-active();}
+
+    @if (mixin-exists(hook-button-primary-active)) {
+        @include hook-button-primary-active();
+    }
 }
 
 /*
@@ -218,7 +258,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-secondary {
     background-color: $button-secondary-background;
     color: $button-secondary-color;
-    @if(mixin-exists(hook-button-secondary)) {@include hook-button-secondary();}
+
+    @if (mixin-exists(hook-button-secondary)) {
+        @include hook-button-secondary();
+    }
 }
 
 /* Hover + Focus */
@@ -226,7 +269,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-secondary:focus {
     background-color: $button-secondary-hover-background;
     color: $button-secondary-hover-color;
-    @if(mixin-exists(hook-button-secondary-hover)) {@include hook-button-secondary-hover();}
+
+    @if (mixin-exists(hook-button-secondary-hover)) {
+        @include hook-button-secondary-hover();
+    }
 }
 
 /* OnClick + Active */
@@ -234,7 +280,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-secondary.uk-active {
     background-color: $button-secondary-active-background;
     color: $button-secondary-active-color;
-    @if(mixin-exists(hook-button-secondary-active)) {@include hook-button-secondary-active();}
+
+    @if (mixin-exists(hook-button-secondary-active)) {
+        @include hook-button-secondary-active();
+    }
 }
 
 /*
@@ -244,7 +293,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-danger {
     background-color: $button-danger-background;
     color: $button-danger-color;
-    @if(mixin-exists(hook-button-danger)) {@include hook-button-danger();}
+
+    @if (mixin-exists(hook-button-danger)) {
+        @include hook-button-danger();
+    }
 }
 
 /* Hover + Focus */
@@ -252,7 +304,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-danger:focus {
     background-color: $button-danger-hover-background;
     color: $button-danger-hover-color;
-    @if(mixin-exists(hook-button-danger-hover)) {@include hook-button-danger-hover();}
+
+    @if (mixin-exists(hook-button-danger-hover)) {
+        @include hook-button-danger-hover();
+    }
 }
 
 /* OnClick + Active */
@@ -260,7 +315,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-danger.uk-active {
     background-color: $button-danger-active-background;
     color: $button-danger-active-color;
-    @if(mixin-exists(hook-button-danger-active)) {@include hook-button-danger-active();}
+
+    @if (mixin-exists(hook-button-danger-active)) {
+        @include hook-button-danger-active();
+    }
 }
 
 /*
@@ -274,7 +332,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-danger:disabled {
     background-color: $button-disabled-background;
     color: $button-disabled-color;
-    @if(mixin-exists(hook-button-disabled)) {@include hook-button-disabled();}
+
+    @if (mixin-exists(hook-button-disabled)) {
+        @include hook-button-disabled();
+    }
 }
 
 
@@ -285,14 +346,20 @@ $button-link-disabled-color:                     $global-muted-color !default;
     padding: 0 $button-small-padding-horizontal;
     line-height: $button-small-line-height;
     font-size: $button-small-font-size;
-    @if(mixin-exists(hook-button-small)) {@include hook-button-small();}
+
+    @if (mixin-exists(hook-button-small)) {
+        @include hook-button-small();
+    }
 }
 
 .uk-button-large {
     padding: 0 $button-large-padding-horizontal;
     line-height: $button-large-line-height;
     font-size: $button-large-font-size;
-    @if(mixin-exists(hook-button-large)) {@include hook-button-large();}
+
+    @if (mixin-exists(hook-button-large)) {
+        @include hook-button-large();
+    }
 }
 
 
@@ -310,22 +377,32 @@ $button-link-disabled-color:                     $global-muted-color !default;
     padding: 0;
     line-height: $button-text-line-height;
     background: none;
+
     /* 2 */
     color: $button-text-color;
-    @if(mixin-exists(hook-button-text)) {@include hook-button-text();}
+
+    @if (mixin-exists(hook-button-text)) {
+        @include hook-button-text();
+    }
 }
 
 /* Hover + Focus */
 .uk-button-text:hover,
 .uk-button-text:focus {
     color: $button-text-hover-color;
-    @if(mixin-exists(hook-button-text-hover)) {@include hook-button-text-hover();}
+
+    @if (mixin-exists(hook-button-text-hover)) {
+        @include hook-button-text-hover();
+    }
 }
 
 /* Disabled */
 .uk-button-text:disabled {
     color: $button-text-disabled-color;
-    @if(mixin-exists(hook-button-text-disabled)) {@include hook-button-text-disabled();}
+
+    @if (mixin-exists(hook-button-text-disabled)) {
+        @include hook-button-text-disabled();
+    }
 }
 
 /*
@@ -339,9 +416,13 @@ $button-link-disabled-color:                     $global-muted-color !default;
     padding: 0;
     line-height: $button-link-line-height;
     background: none;
+
     /* 2 */
     color: $button-link-color;
-    @if(mixin-exists(hook-button-link)) {@include hook-button-link();}
+
+    @if (mixin-exists(hook-button-link)) {
+        @include hook-button-link();
+    }
 }
 
 /* Hover + Focus */
@@ -370,8 +451,10 @@ $button-link-disabled-color:                     $global-muted-color !default;
 .uk-button-group {
     /* 1 */
     display: inline-flex;
+
     /* 2 */
     vertical-align: middle;
+
     /* 3 */
     position: relative;
 }
@@ -380,7 +463,9 @@ $button-link-disabled-color:                     $global-muted-color !default;
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-button-misc)) {@include hook-button-misc();}
+@if (mixin-exists(hook-button-misc)) {
+    @include hook-button-misc();
+}
 
 // @mixin hook-button(){}
 // @mixin hook-button-hover(){}
@@ -434,7 +519,6 @@ $inverse-button-text-hover-color:               $inverse-global-color !default;
 $inverse-button-text-disabled-color:            $inverse-global-muted-color !default;
 $inverse-button-link-color:                     $inverse-global-muted-color !default;
 $inverse-button-link-hover-color:               $inverse-global-color !default;
-
 
 
 // @mixin hook-inverse-button-default(){}

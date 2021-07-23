@@ -1,0 +1,14 @@
+.slider {
+    position: relative;
+}
+
+.slider-item {
+    width: 100%;
+    padding-right: 1.25rem;
+    box-sizing: content-box;
+
+    &__content {
+        width: 100%;
+        position: relative;
+    }
+}

@@ -63,10 +63,13 @@ $search-toggle-hover-color:                          $global-color !default;
 .uk-search {
     /* 1 */
     display: inline-block;
+
     /* 2 */
     position: relative;
+
     /* 3 */
     max-width: 100%;
+
     /* 4 */
     margin: 0;
 }
@@ -80,13 +83,17 @@ $search-toggle-hover-color:                          $global-color !default;
  */
 
 .uk-search-input::-webkit-search-cancel-button,
-.uk-search-input::-webkit-search-decoration { -webkit-appearance: none; }
+.uk-search-input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
 
 /*
  * Removes placeholder transparency in Firefox.
  */
 
-.uk-search-input::-moz-placeholder { opacity: 1; }
+.uk-search-input::-moz-placeholder {
+    opacity: 1;
+}
 
 /*
  * 1. Define consistent box sizing.
@@ -103,31 +110,49 @@ $search-toggle-hover-color:                          $global-color !default;
 .uk-search-input {
     /* 1 */
     box-sizing: border-box;
+
     /* 2 */
     margin: 0;
+
     /* 3 */
     border-radius: 0;
+
     /* 4 */
     font: inherit;
+
     /* 5 */
     overflow: visible;
+
     /* 6 */
     -webkit-appearance: none;
+
     /* 7 */
     vertical-align: middle;
+
     /* 8 */
     width: 100%;
+
     /* 9 */
     border: none;
     color: $search-color;
-    @if(mixin-exists(hook-search-input)) {@include hook-search-input();}
+
+    @if (mixin-exists(hook-search-input)) {
+        @include hook-search-input();
+    }
 }
 
-.uk-search-input:focus { outline: none; }
+.uk-search-input:focus {
+    outline: none;
+}
 
 /* Placeholder */
-.uk-search-input:-ms-input-placeholder { color: $search-placeholder-color !important; }
-.uk-search-input::placeholder { color: $search-placeholder-color; }
+.uk-search-input:-ms-input-placeholder {
+    color: $search-placeholder-color !important;
+}
+
+.uk-search-input::placeholder {
+    color: $search-placeholder-color;
+}
 
 
 /* Icon (Adopts `uk-icon`)
@@ -137,7 +162,9 @@ $search-toggle-hover-color:                          $global-color !default;
  * Remove default focus style
  */
 
-.uk-search-icon:focus { outline: none; }
+.uk-search-icon:focus {
+    outline: none;
+}
 
 /*
  * Position above input
@@ -152,10 +179,12 @@ $search-toggle-hover-color:                          $global-color !default;
     top: 0;
     bottom: 0;
     left: 0;
+
     /* 2 */
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
     /* 3 */
     color: $search-icon-color;
 }
@@ -164,13 +193,17 @@ $search-toggle-hover-color:                          $global-color !default;
  * Required for `a`.
  */
 
-.uk-search .uk-search-icon:hover { color: $search-icon-color; }
+.uk-search .uk-search-icon:hover {
+    color: $search-icon-color;
+}
 
 /*
  * Make `input` element clickable through icon, e.g. if it's a `span`
  */
 
-.uk-search .uk-search-icon:not(a):not(button):not(input) { pointer-events: none; }
+.uk-search .uk-search-icon:not(a):not(button):not(input) {
+    pointer-events: none;
+}
 
 /*
  * Position modifier
@@ -185,7 +218,9 @@ $search-toggle-hover-color:                          $global-color !default;
 /* Default modifier
  ========================================================================== */
 
-.uk-search-default { width: $search-default-width; }
+.uk-search-default {
+    width: $search-default-width;
+}
 
 /*
  * Input
@@ -196,29 +231,44 @@ $search-toggle-hover-color:                          $global-color !default;
     padding-left: $search-default-padding-horizontal;
     padding-right: $search-default-padding-horizontal;
     background: $search-default-background;
-    @if(mixin-exists(hook-search-default-input)) {@include hook-search-default-input();}
+
+    @if (mixin-exists(hook-search-default-input)) {
+        @include hook-search-default-input();
+    }
 }
 
 /* Focus */
 .uk-search-default .uk-search-input:focus {
     background-color: $search-default-focus-background;
-    @if(mixin-exists(hook-search-default-input-focus)) {@include hook-search-default-input-focus();}
+
+    @if (mixin-exists(hook-search-default-input-focus)) {
+        @include hook-search-default-input-focus();
+    }
 }
 
 /*
  * Icon
  */
 
-.uk-search-default .uk-search-icon { width: $search-default-icon-width; }
+.uk-search-default .uk-search-icon {
+    width: $search-default-icon-width;
+}
 
-.uk-search-default .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input { padding-left: ($search-default-icon-width); }
-.uk-search-default .uk-search-icon-flip ~ .uk-search-input { padding-right: ($search-default-icon-width); }
+.uk-search-default .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input {
+    padding-left: ($search-default-icon-width);
+}
+
+.uk-search-default .uk-search-icon-flip ~ .uk-search-input {
+    padding-right: ($search-default-icon-width);
+}
 
 
 /* Navbar modifier
  ========================================================================== */
 
-.uk-search-navbar { width: $search-navbar-width; }
+.uk-search-navbar {
+    width: $search-navbar-width;
+}
 
 /*
  * Input
@@ -228,23 +278,35 @@ $search-toggle-hover-color:                          $global-color !default;
     height: $search-navbar-height;
     background: $search-navbar-background;
     font-size: $search-navbar-font-size;
-    @if(mixin-exists(hook-search-navbar-input)) {@include hook-search-navbar-input();}
+
+    @if (mixin-exists(hook-search-navbar-input)) {
+        @include hook-search-navbar-input();
+    }
 }
 
 /*
  * Icon
  */
 
-.uk-search-navbar .uk-search-icon { width: $search-navbar-icon-width; }
+.uk-search-navbar .uk-search-icon {
+    width: $search-navbar-icon-width;
+}
 
-.uk-search-navbar .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input { padding-left: ($search-navbar-icon-width); }
-.uk-search-navbar .uk-search-icon-flip ~ .uk-search-input { padding-right: ($search-navbar-icon-width); }
+.uk-search-navbar .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input {
+    padding-left: ($search-navbar-icon-width);
+}
+
+.uk-search-navbar .uk-search-icon-flip ~ .uk-search-input {
+    padding-right: ($search-navbar-icon-width);
+}
 
 
 /* Large modifier
  ========================================================================== */
 
-.uk-search-large { width: $search-large-width; }
+.uk-search-large {
+    width: $search-large-width;
+}
 
 /*
  * Input
@@ -254,17 +316,27 @@ $search-toggle-hover-color:                          $global-color !default;
     height: $search-large-height;
     background: $search-large-background;
     font-size: $search-large-font-size;
-    @if(mixin-exists(hook-search-large-input)) {@include hook-search-large-input();}
+
+    @if (mixin-exists(hook-search-large-input)) {
+        @include hook-search-large-input();
+    }
 }
 
 /*
  * Icon
  */
 
-.uk-search-large .uk-search-icon { width: $search-large-icon-width; }
+.uk-search-large .uk-search-icon {
+    width: $search-large-icon-width;
+}
 
-.uk-search-large .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input { padding-left: ($search-large-icon-width); }
-.uk-search-large .uk-search-icon-flip ~ .uk-search-input { padding-right: ($search-large-icon-width); }
+.uk-search-large .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input {
+    padding-left: ($search-large-icon-width);
+}
+
+.uk-search-large .uk-search-icon-flip ~ .uk-search-input {
+    padding-right: ($search-large-icon-width);
+}
 
 
 /* Toggle
@@ -272,21 +344,29 @@ $search-toggle-hover-color:                          $global-color !default;
 
 .uk-search-toggle {
     color: $search-toggle-color;
-    @if(mixin-exists(hook-search-toggle)) {@include hook-search-toggle();}
+
+    @if (mixin-exists(hook-search-toggle)) {
+        @include hook-search-toggle();
+    }
 }
 
 /* Hover + Focus */
 .uk-search-toggle:hover,
 .uk-search-toggle:focus {
     color: $search-toggle-hover-color;
-    @if(mixin-exists(hook-search-toggle-hover)) {@include hook-search-toggle-hover();}
+
+    @if (mixin-exists(hook-search-toggle-hover)) {
+        @include hook-search-toggle-hover();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-search-misc)) {@include hook-search-misc();}
+@if (mixin-exists(hook-search-misc)) {
+    @include hook-search-misc();
+}
 
 // @mixin hook-search-input(){}
 // @mixin hook-search-default-input(){}
@@ -317,7 +397,6 @@ $inverse-search-large-background:               transparent !default;
 
 $inverse-search-toggle-color:                   $inverse-global-muted-color !default;
 $inverse-search-toggle-hover-color:             $inverse-global-color !default;
-
 
 
 // @mixin hook-inverse-search-default-input(){}

@@ -54,30 +54,41 @@ $icon-button-active-color:                       $global-color !default;
 .uk-icon {
     /* 1 */
     margin: 0;
+
     /* 2 */
     border: none;
+
     /* 3 */
     border-radius: 0;
+
     /* 4 */
     overflow: visible;
+
     /* 5 */
     font: inherit;
     color: inherit;
+
     /* 6 */
     text-transform: none;
+
     /* 7. */
     padding: 0;
     background-color: transparent;
+
     /* 8 */
     display: inline-block;
+
     /* 9 */
     fill: currentcolor;
+
     /* 10 */
     line-height: 0;
 }
 
 /* Required for `button`. */
-button.uk-icon:not(:disabled) { cursor: pointer; }
+button.uk-icon:not(:disabled) {
+    cursor: pointer;
+}
 
 /*
  * Remove the inner border and padding in Firefox.
@@ -92,14 +103,21 @@ button.uk-icon:not(:disabled) { cursor: pointer; }
  * Set the fill and stroke color of all SVG elements to the current text color
  */
 
-.uk-icon:not(.uk-preserve) [fill*='#']:not(.uk-preserve) { fill: currentcolor; }
-.uk-icon:not(.uk-preserve) [stroke*='#']:not(.uk-preserve) { stroke: currentcolor; }
+.uk-icon:not(.uk-preserve) [fill*='#']:not(.uk-preserve) {
+    fill: currentcolor;
+}
+
+.uk-icon:not(.uk-preserve) [stroke*='#']:not(.uk-preserve) {
+    stroke: currentcolor;
+}
 
 /*
  * Fix Firefox blurry SVG rendering: https://bugzilla.mozilla.org/show_bug.cgi?id=1046835
  */
 
-.uk-icon > * { transform: translate(0,0); }
+.uk-icon > * {
+    transform: translate(0, 0);
+}
 
 
 /* Image modifier
@@ -128,21 +146,30 @@ button.uk-icon:not(:disabled) { cursor: pointer; }
 
 .uk-icon-link {
     color: $icon-link-color;
-    @if(mixin-exists(hook-icon-link)) {@include hook-icon-link();}
+
+    @if (mixin-exists(hook-icon-link)) {
+        @include hook-icon-link();
+    }
 }
 
 .uk-icon-link:hover,
 .uk-icon-link:focus {
     color: $icon-link-hover-color;
     outline: none;
-    @if(mixin-exists(hook-icon-link-hover)) {@include hook-icon-link-hover();}
+
+    @if (mixin-exists(hook-icon-link-hover)) {
+        @include hook-icon-link-hover();
+    }
 }
 
 /* OnClick + Active */
 .uk-icon-link:active,
 .uk-active > .uk-icon-link {
     color: $icon-link-active-color;
-    @if(mixin-exists(hook-icon-link-active)) {@include hook-icon-link-active();}
+
+    @if (mixin-exists(hook-icon-link-active)) {
+        @include hook-icon-link-active();
+    }
 }
 
 /*
@@ -158,11 +185,15 @@ button.uk-icon:not(:disabled) { cursor: pointer; }
     background: $icon-button-background;
     color: $icon-button-color;
     vertical-align: middle;
+
     /* 1 */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    @if(mixin-exists(hook-icon-button)) {@include hook-icon-button();}
+
+    @if (mixin-exists(hook-icon-button)) {
+        @include hook-icon-button();
+    }
 }
 
 /* Hover + Focus */
@@ -171,7 +202,10 @@ button.uk-icon:not(:disabled) { cursor: pointer; }
     background-color: $icon-button-hover-background;
     color: $icon-button-hover-color;
     outline: none;
-    @if(mixin-exists(hook-icon-button-hover)) {@include hook-icon-button-hover();}
+
+    @if (mixin-exists(hook-icon-button-hover)) {
+        @include hook-icon-button-hover();
+    }
 }
 
 /* OnClick + Active */
@@ -179,14 +213,19 @@ button.uk-icon:not(:disabled) { cursor: pointer; }
 .uk-active > .uk-icon-button {
     background-color: $icon-button-active-background;
     color: $icon-button-active-color;
-    @if(mixin-exists(hook-icon-button-active)) {@include hook-icon-button-active();}
+
+    @if (mixin-exists(hook-icon-button-active)) {
+        @include hook-icon-button-active();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-icon-misc)) {@include hook-icon-misc();}
+@if (mixin-exists(hook-icon-misc)) {
+    @include hook-icon-misc();
+}
 
 // @mixin hook-icon-link(){}
 // @mixin hook-icon-link-hover(){}
@@ -209,7 +248,6 @@ $inverse-icon-button-hover-background:          darken($inverse-icon-button-back
 $inverse-icon-button-hover-color:               $inverse-global-color !default;
 $inverse-icon-button-active-background:         darken($inverse-icon-button-background, 10%) !default;
 $inverse-icon-button-active-color:              $inverse-global-color !default;
-
 
 
 // @mixin hook-inverse-icon-link(){}

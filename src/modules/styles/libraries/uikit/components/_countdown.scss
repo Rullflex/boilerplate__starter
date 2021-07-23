@@ -29,7 +29,9 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
  ========================================================================== */
 
 .uk-countdown {
-    @if(mixin-exists(hook-countdown)) {@include hook-countdown();}
+    @if (mixin-exists(hook-countdown)) {
+        @include hook-countdown();
+    }
 }
 
 
@@ -38,7 +40,9 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
 
 .uk-countdown-number,
 .uk-countdown-separator {
-    @if(mixin-exists(hook-countdown-item)) {@include hook-countdown-item();}
+    @if (mixin-exists(hook-countdown-item)) {
+        @include hook-countdown-item();
+    }
 }
 
 
@@ -54,24 +58,28 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
 .uk-countdown-number {
     /* 1 */
     font-variant-numeric: tabular-nums;
+
     /* 2 */
     font-size: $countdown-number-font-size;
     line-height: $countdown-number-line-height;
-    @if(mixin-exists(hook-countdown-number)) {@include hook-countdown-number();}
+
+    @if (mixin-exists(hook-countdown-number)) {
+        @include hook-countdown-number();
+    }
 }
 
 /* Phone landscape and bigger */
 @media (min-width: $breakpoint-small) {
-
-    .uk-countdown-number { font-size: $countdown-number-font-size-s; }
-
+    .uk-countdown-number {
+        font-size: $countdown-number-font-size-s;
+    }
 }
 
 /* Tablet landscape and bigger */
 @media (min-width: $breakpoint-medium) {
-
-    .uk-countdown-number { font-size: $countdown-number-font-size-m; }
-
+    .uk-countdown-number {
+        font-size: $countdown-number-font-size-m;
+    }
 }
 
 
@@ -81,21 +89,24 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
 .uk-countdown-separator {
     font-size: $countdown-separator-font-size;
     line-height: $countdown-separator-line-height;
-    @if(mixin-exists(hook-countdown-separator)) {@include hook-countdown-separator();}
+
+    @if (mixin-exists(hook-countdown-separator)) {
+        @include hook-countdown-separator();
+    }
 }
 
 /* Phone landscape and bigger */
 @media (min-width: $breakpoint-small) {
-
-    .uk-countdown-separator { font-size: $countdown-separator-font-size-s; }
-
+    .uk-countdown-separator {
+        font-size: $countdown-separator-font-size-s;
+    }
 }
 
 /* Tablet landscape and bigger */
 @media (min-width: $breakpoint-medium) {
-
-    .uk-countdown-separator { font-size: $countdown-separator-font-size-m; }
-
+    .uk-countdown-separator {
+        font-size: $countdown-separator-font-size-m;
+    }
 }
 
 
@@ -103,14 +114,18 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
  ========================================================================== */
 
 .uk-countdown-label {
-    @if(mixin-exists(hook-countdown-label)) {@include hook-countdown-label();}
+    @if (mixin-exists(hook-countdown-label)) {
+        @include hook-countdown-label();
+    }
 }
 
 
 // Hooks
 // ========================================================================
 
-@if(mixin-exists(hook-countdown-misc)) {@include hook-countdown-misc();}
+@if (mixin-exists(hook-countdown-misc)) {
+    @include hook-countdown-misc();
+}
 
 // @mixin hook-countdown(){}
 // @mixin hook-countdown-item(){}
@@ -122,7 +137,6 @@ $countdown-separator-font-size-m:                3rem !default; // 48px
 
 // Inverse
 // ========================================================================
-
 
 
 // @mixin hook-inverse-countdown-item(){}
