@@ -1,5 +1,5 @@
 mixin Slider({ sliderOptions = '', onlyHTML = false } = {})
-	- if onlyHTML { attributes['data-uk-slider'] = sliderOptions }
+	- if (onlyHTML) { attributes['data-uk-slider'] = sliderOptions }
 
 	.slider&attributes(attributes)
 		.slider__container.uk-slider-container 

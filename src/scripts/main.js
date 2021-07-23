@@ -1,5 +1,5 @@
 import UIkit from 'uikit';
-import { app, form } from '../../modules/scripts/_core';
+import { app, form } from './_core';
 
 UIkit.util.ready(function () {
     app.init();

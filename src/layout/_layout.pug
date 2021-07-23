@@ -1,5 +1,6 @@
-include _mixins
 include _vars
+include _filters
+include _components
 
 doctype html
 html(lang="ru")
@@ -10,7 +11,7 @@ html(lang="ru")
 			meta(name="format-detection" content="telephone=no")
 			meta(content="ie=edge" http-equiv="x-ua-compatible")
 			meta(property="og:image" content=`/ogimage.jpg`)
-			
+
 			link(rel="stylesheet" href!=stylesPath)
 
 			include includes/_favicon
@@ -25,9 +26,10 @@ html(lang="ru")
 
 			block footer
 				include includes/_footer
-				
-			block popup
-				include includes/_popups
+
+			block modals
+				include modals/_thanks
+				include modals/_callback
 
 			include includes/_svg-icons
 
