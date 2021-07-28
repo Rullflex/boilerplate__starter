@@ -1,7 +1,9 @@
 import UIkit from 'uikit';
 import { app, form } from './_core';
 
-UIkit.util.ready(function () {
+const { ready, $, $$, play, pause, mute } = UIkit.util;
+
+ready(function () {
     app.init();
 
     // FORM

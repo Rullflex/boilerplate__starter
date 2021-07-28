@@ -1,10 +1,12 @@
-mixin picture(type, imageName, dimentions, retinaDimentions)
+mixin picture(type = 'png' | 'jpg' | 'svg', imageName = String, dimentions = String(""), retinaDimentions = String(""))
 	- imageName = images + imageName
 	+picture-constructor(type, imagePlaceholder, imageName, dimentions, retinaDimentions, true, false)&attributes(attributes)
 
-mixin picture-min(type, imageName, dimentions, retinaDimentions)
+
+mixin picture-min(type = 'png' | 'jpg' | 'svg', imageName = String, dimentions = String(""), retinaDimentions = String(""))
 	- imageName = images + imageName
 	+picture-constructor(type, `${imageName}-min`, imageName, dimentions, retinaDimentions, true, true)&attributes(attributes).lazymin
+
 
 mixin picture-constructor(imageExtension, imageSrc = imagePlaceholder, imageDataSrc, breakpointsLetters = '', retinaLetters = '', includeWebp = true, usePreloadImage = false)
 	picture
@@ -29,10 +31,10 @@ mixin picture-constructor(imageExtension, imageSrc = imagePlaceholder, imageData
 					includeWebp
 				]
 
-			+picture-source(...sourceParameters)
+			+_picture-source(...sourceParameters)
 
 		else
-			+picture-source(0, getImageSrc(), imageDataSrc, imageExtension, retinaLetters ? true : false, includeWebp)
+			+_picture-source(0, getImageSrc(), imageDataSrc, imageExtension, retinaLetters ? true : false, includeWebp)
 
 		if breakpointsLetters
 			- const imgDimention = breakpointsLetterCollation[reversedBreakpointsLetters[0]]
@@ -43,7 +45,7 @@ mixin picture-constructor(imageExtension, imageSrc = imagePlaceholder, imageData
 			img(src!=getImageSrc() data-src!=`${imageDataSrc}` alt='' class=`lazyload`)&attributes(attributes)
 
 
-mixin picture-source(media = 0, srcset, dataSrcsetBase, type, useRetina = false, includeWebp = false)
+mixin _picture-source(media = 0, srcset, dataSrcsetBase, type, useRetina = false, includeWebp = false)
 	- const postfixRetina = '@2x'
 
 	if includeWebp === true && (type === 'jpg' || type === 'png')

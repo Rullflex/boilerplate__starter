@@ -5,13 +5,3 @@ prepend head
 	meta(name="description" content="Описание страницы")
 
 block content
-	.container
-		h1
-			| достаток: 
-			= money(digits('23 414 232    324234'))
-			br
-			= root
-
-		+Slider.s8__slider
-			+SliderItem.s8__slider-item.s8__slider-item-1
-				h1!= breakpoints.lg

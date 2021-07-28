@@ -1,60 +1,101 @@
-mixin Slider({ sliderOptions = '', onlyHTML = false } = {})
-	- if (onlyHTML) { attributes['data-uk-slider'] = sliderOptions }
+//- https://getuikit.com/docs/slider#component-options
+
+mixin Slider
+	-
+		const { 
+			primary, onlyHTML, 
+			autoplay, autoplayInterval,  center, draggable, easing, finite, index, pauseOnHover,  sets, velocity } = Component(attributes, {
+
+			primary: { type: Boolean, default: false },
+
+			onlyHTML: { type: Boolean, default: false },
+
+			autoplay: { type: Boolean, defaultValue: false },
+
+			autoplayInterval: { type: Number, defaultValue: 7000 },
+
+			center: { type: Boolean, defaultValue: false },
+
+			draggable: { type: Boolean, defaultValue: true },
+
+			easing: { type: String, defaultValue: 'ease' },
+
+			finite: { type: Boolean, defaultValue: false },
+
+			index: { type: Number, defaultValue: 0 },
+
+			pauseOnHover: { type: Boolean, defaultValue: true },
+
+			sets: { type: Boolean, defaultValue: false },
+
+			velocity: { type: Number, defaultValue: 1 },
+		})
+
+		if (primary) attributes.class += ' slider--primary'
+
+		if (!onlyHTML) {
+			attributes['data-uk-slider'] = '';
+
+			setUkProperty('autoplay', autoplay, attributes)
+			setUkProperty('autoplay-interval', autoplayInterval, attributes)
+			setUkProperty('center', center, attributes)
+			setUkProperty('draggable', draggable, attributes)
+			setUkProperty('easing', easing, attributes)
+			setUkProperty('finite', finite, attributes)
+			setUkProperty('index', index, attributes)
+			setUkProperty('pause-on-hover', pauseOnHover, attributes)
+			setUkProperty('sets', sets, attributes)
+			setUkProperty('velocity', velocity, attributes)
+		}
+
+
+		function setUkProperty(property, value, componentAttrs) {
+			componentAttrs[`data-${property}`] = value
+		}
+
+
 
 	.slider&attributes(attributes)
-		.slider__container.uk-slider-container 
-			ul.slider__items.uk-slider-items 	
-				block
+		block 
 
-mixin SliderItem
+mixin SliderItems
+	-
+		const { containerVisible } = Component(attributes, {
+			containerVisible: {
+				type: Boolean,
+				default: false,
+			},
+		})
+
+	.slider__container.uk-slider-container(class = containerVisible && 'slider__container--visible')
+		ul.slider-items.uk-slider-items&attributes(attributes)
+			block
+
+mixin SliderItem 
 	li.slider-item&attributes(attributes)
 		.slider-item__content
 			block
 
-mixin slider-dotnav
+
+
+mixin SliderDotnav
 	ul.dotnav.uk-slider-nav&attributes(attributes)
 
-mixin slideshow-dotnav
-	ul.dotnav.uk-slideshow-nav&attributes(attributes)
-
-
-mixin slider-slidenav
+mixin SliderSlidenav
 	ul.slidenav&attributes(attributes)
 		li.slidenav__item(data-uk-slider-item="previous")
 			a.slidenav__link.slidenav__link--prev(href="#")
-				+icon('angle-left').slidenav__icon
+				//- +icon('angle-left').slidenav__icon
 		li.slidenav__item(data-uk-slider-item="next")
 			a.slidenav__link.slidenav__link--next(href="#")
-				+icon('angle-right').slidenav__icon
+				//- +icon('angle-right').slidenav__icon
 
-mixin slideshow-slidenav
-	ul.slidenav&attributes(attributes)
-		li.slidenav__item(data-uk-slideshow-item="previous")
-			a.slidenav__link.slidenav__link--prev(href="#")
-				+icon('angle-left').slidenav__icon
-		li.slidenav__item(data-uk-slideshow-item="next")
-			a.slidenav__link.slidenav__link--next(href="#")
-				+icon('angle-right').slidenav__icon
-
-
-
-mixin slider-thumbnav(length, imgSrc = `${assets}slider-thumb-img-`)
+mixin SliderThumbnav(length, imgSrc = `slider-thumb-img-`)
 	ul.thumbnav&attributes(attributes)
 		if block 
 			block 
 		else
 			- for (var i = 0; i < length; i++)
 				li.thumbnav__item(data-uk-slider-item=i)
-					a.thumbnav__link.ibg(href="#")
-						+picture(jpg, `${imgSrc}${i + 1}`, 'n')
-
-mixin slideshow-thumbnav(length, imgSrc = `${assets}slider-thumb-img-`)
-	ul.thumbnav&attributes(attributes)
-		if block 
-			block 
-		else
-			- for (var i = 0; i < length; i++)
-				li.thumbnav__item(data-uk-slideshow-item=i)
-					a.thumbnav__link.ibg(href="#")
-						+picture(jpg, `${imgSrc}${i + 1}`, 'n')
-
+					a.thumbnav__link(href="#")
+						+Picture(jpg, imgSrc)

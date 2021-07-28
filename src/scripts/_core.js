@@ -97,7 +97,7 @@ export const app = {
             $videoWrapper.insertAdjacentHTML(`beforeend`, this.loaderHtml);
             $videoWrapper.insertAdjacentHTML(
                 `beforeend`,
-                `<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/${YTid}" frameborder="0" allowfullscreen="true" data-uk-video data-uk-responsive"></iframe>`,
+                `<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/${YTid}?enablejsapi=1" frameborder="0" allowfullscreen="true" data-uk-video data-uk-responsive"></iframe>`,
             );
         });
     },

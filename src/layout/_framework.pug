@@ -1,0 +1,45 @@
+-
+    function Component(attributes, props = IProps) {
+        const values = {}
+
+        for (const key in attributes) {
+            if (Object.hasOwnProperty.call(attributes, key)) {
+                const element = attributes[key];
+
+                if (props[key]) {
+                    const { type } = props[key];
+
+                    if (!(type instanceof Array)) {
+                        if (typeof element !== typeof type()) {
+                            console.error(`Свойство: "${key}" со значением`, element, `не соответствует определяемому типу`, type);
+                        }
+                    } else {
+                        if (type.find(type => typeof element === typeof type()) === undefined) {
+                            console.error(`Свойство: "${key}" со значением`, element, `не соответствует определяемому типу`, type);
+                        }
+                    }
+
+                    values[key] = element;
+                    delete attributes[key]
+                }
+            }
+        }
+
+        for (const key in props) {
+            if (Object.hasOwnProperty.call(props, key)) {
+                const element = props[key];
+
+                if (values[key] === undefined) {
+                    const { required } = element;
+
+                    if (required === true) {
+                        console.error(`Свойство: "${key}" требует быть заполненным`);
+                    }
+
+                    values[key] = props[key].default;
+                }
+            }
+        }
+
+        return values;
+    }

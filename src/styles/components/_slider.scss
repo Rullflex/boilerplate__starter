@@ -1,5 +1,17 @@
 .slider {
     position: relative;
+
+    &__container {
+        &--visible {
+            overflow: visible;
+        }
+    }
+
+    &--primary {
+        .slider-item {
+            background: $primary;
+        }
+    }
 }
 
 .slider-item {
