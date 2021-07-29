@@ -1,45 +1,46 @@
 -
-    function Component(attributes, props = IProps) {
+    function Component(attributes, props) {
         const values = {}
 
-        for (const key in attributes) {
-            if (Object.hasOwnProperty.call(attributes, key)) {
-                const element = attributes[key];
-
-                if (props[key]) {
-                    const { type } = props[key];
-
-                    if (!(type instanceof Array)) {
-                        if (typeof element !== typeof type()) {
-                            console.error(`Свойство: "${key}" со значением`, element, `не соответствует определяемому типу`, type);
-                        }
-                    } else {
-                        if (type.find(type => typeof element === typeof type()) === undefined) {
-                            console.error(`Свойство: "${key}" со значением`, element, `не соответствует определяемому типу`, type);
-                        }
-                    }
-
-                    values[key] = element;
-                    delete attributes[key]
-                }
-            }
-        }
-
         for (const key in props) {
-            if (Object.hasOwnProperty.call(props, key)) {
-                const element = props[key];
 
-                if (values[key] === undefined) {
-                    const { required } = element;
+            const propOptions = props[key];
+            const { type, required } = propOptions;
+            const attributeValue = attributes[key];
 
-                    if (required === true) {
-                        console.error(`Свойство: "${key}" требует быть заполненным`);
+            if (attributeValue) {
+                if (type instanceof Array) {
+                    if (type.find(type => typeof attributeValue === typeof type()) === undefined) {
+                        console.error(`Свойство: "${key}" со значением`, attributeValue, `не соответствует определяемому типу`, type);
                     }
+                } else {
+                    if (typeof attributeValue !== typeof type()) {
+                        console.error(`Свойство: "${key}" со значением`, attributeValue, `не соответствует определяемому типу`, type);
+                    }
+                }
 
-                    values[key] = props[key].default;
+                values[key] = attributeValue;
+                delete attributes[key]
+            } else {
+                if (required) {
+                    console.error(`Свойство: "${key}" должно быть заполненным`);
+                } else {
+                    values[key] = propOptions.default;
                 }
             }
         }
 
         return values;
+    }
+
+    function setUkOptions(ukComponentOptions) {
+        let string = '';
+
+        for (const key in ukComponentOptions) {
+            if (ukComponentOptions[key] !== undefined) {
+                string += ` ${key}: ${ukComponentOptions[key]};`;
+            }
+        }
+
+        return string.trim();
     }

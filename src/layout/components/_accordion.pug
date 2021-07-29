@@ -6,13 +6,35 @@
 
 mixin Accordion
 	-
-		const { options, onlyHTML } = Component(attributes, {
-			options: { type: String, default: '' },
+		const { onlyHTML,
+			active, animation, collapsible, content, duration, multiple, targets, toggle, transition, offset } = Component(attributes, {
 
 			onlyHTML: { type: Boolean, default: false },
+
+			active: { type: Number, defaultValue: false },
+
+			animation: { type: Boolean, defaultValue: true },
+
+			collapsible: { type: Boolean, defaultValue: true },
+
+			content: { type: String, defaultValue: '> .uk-accordion-content' },
+
+			duration: { type: Number, defaultValue: 200 },
+
+			multiple: { type: Boolean, defaultValue: false },
+
+			targets: { type: String, defaultValue: '> *' },
+
+			toggle: { type: String, defaultValue: '> .uk-accordion-title' },
+
+			transition: { type: String, defaultValue: 'ease' },
+
+			offset: { type: Number, defaultValue: 0 },
 		})
 
-		if (!onlyHTML) { attributes['data-uk-accordion'] = options }
+		if (!onlyHTML) attributes['data-uk-accordion'] = setUkOptions({ active, animation, collapsible, content, duration, multiple, targets, transition, offset }) 
+
+
 
 	ul.accordion&attributes(attributes)
 		block

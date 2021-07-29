@@ -3,10 +3,8 @@
 mixin Slider
 	-
 		const { 
-			primary, onlyHTML, 
+			onlyHTML, 
 			autoplay, autoplayInterval,  center, draggable, easing, finite, index, pauseOnHover,  sets, velocity } = Component(attributes, {
-
-			primary: { type: Boolean, default: false },
 
 			onlyHTML: { type: Boolean, default: false },
 
@@ -31,29 +29,7 @@ mixin Slider
 			velocity: { type: Number, defaultValue: 1 },
 		})
 
-		if (primary) attributes.class += ' slider--primary'
-
-		if (!onlyHTML) {
-			attributes['data-uk-slider'] = '';
-
-			setUkProperty('autoplay', autoplay, attributes)
-			setUkProperty('autoplay-interval', autoplayInterval, attributes)
-			setUkProperty('center', center, attributes)
-			setUkProperty('draggable', draggable, attributes)
-			setUkProperty('easing', easing, attributes)
-			setUkProperty('finite', finite, attributes)
-			setUkProperty('index', index, attributes)
-			setUkProperty('pause-on-hover', pauseOnHover, attributes)
-			setUkProperty('sets', sets, attributes)
-			setUkProperty('velocity', velocity, attributes)
-		}
-
-
-		function setUkProperty(property, value, componentAttrs) {
-			componentAttrs[`data-${property}`] = value
-		}
-
-
+		if (!onlyHTML) attributes['data-uk-slider'] = setUkOptions({ autoplay, 'autoplay-interval': autoplayInterval, center, draggable, easing, finite, index, 'pause-on-hover': pauseOnHover, sets, velocity }) 
 
 	.slider&attributes(attributes)
 		block 

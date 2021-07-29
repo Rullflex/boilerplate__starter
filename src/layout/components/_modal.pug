@@ -1,12 +1,31 @@
-mixin popup
-	.popup.uk-modal(data-uk-modal)&attributes(attributes)
-		.popup__body.uk-modal-dialog.uk-margin-auto-vertical
-			button.popup__close.uk-modal-close-default(type="button" data-uk-close)
-			block
+//- https://getuikit.com/docs/modal#component-options
 
-mixin popup-16-9
-	.popup-video.popup.uk-modal(data-uk-modal)&attributes(attributes)
-		.popup__body.uk-modal-dialog.uk-margin-auto-vertical.embed-responsive.embed-responsive-16by9
-			button.popup__close.uk-modal-close-default(type="button" data-uk-close)
-			block
+mixin Modal 
+	-
+		const { withAspectRatio,
+			escClose, bgClose, stack, container, clsPage, clsPanel, selClose } = Component(attributes, {
 
+			withAspectRatio: { type: Boolean, default: false },
+
+			escClose: { type: Boolean, defaultValue: true },
+
+			bgClose: { type: Boolean, defaultValue: true },
+
+			stack: { type: Boolean, defaultValue: false },
+
+			container: { type: String, defaultValue: true },
+
+			clsPage: { type: String, defaultValue: 'uk-modal-page' },
+
+			clsPanel: { type: String, defaultValue: 'uk-modal-dialog' },
+
+			selClose: { type: String, defaultValue: '.uk-modal-close, .uk-modal-close-default, .uk-modal-close-outside, .uk-modal-close-full' },
+
+		})
+
+		attributes['data-uk-modal'] = setUkOptions({ 'esc-close': escClose, 'bg-close': bgClose, stack, container, 'cls-page': clsPage, 'cls-panel': clsPanel, 'sel-close': selClose })
+
+	.modal.uk-modal&attributes(attributes)
+		.modal__body.uk-modal-dialog.uk-margin-auto-vertical(class=withAspectRatio && 'embed-responsive.embed-responsive-16by9')
+			button.modal__close.uk-modal-close-default(type="button" data-uk-close)
+			block

@@ -18,9 +18,20 @@ mixin menu
         .header__menu-drop.menu-drop(data-uk-dropdown="mode: click; pos: bottom-justify; boundary: .header; boundary-align: true; animation: uk-animation-slide-top-small; duration: 300")
             block
 
+mixin Header 
+    -
+        const { sticky } = Component(attributes, {
+            sticky: { type: Boolean, default: false },
+        })
+
+        if (sticky) attributes['data-uk-sticky'] = 'top: 90vh; animation: uk-animation-slide-top'
+
+    header&attributes(attributes)
+        block
+
 //- Template
 
-header.header 
++Header.header
     .container 
         .header__row 
             +menu
