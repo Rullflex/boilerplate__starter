@@ -1,0 +1,15 @@
+
+mixin TabSwitcher
+	-
+		const { onlyHTML,
+			} = Component(attributes, {
+
+onlyHTML: { type: Boolean, default: false },
+		})
+
+		if (!onlyHTML) attributes['data-uk-accordion'] = setUkOptions({ active, animation, collapsible, content, duration, multiple, targets, transition, offset }) 
+
+
+
+	ul.accordion&attributes(attributes)
+		block

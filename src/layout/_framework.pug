@@ -8,7 +8,7 @@
             const { type, required } = propOptions;
             const attributeValue = attributes[key];
 
-            if (attributeValue) {
+            if (attributeValue !== undefined) {
                 if (type instanceof Array) {
                     if (type.find(type => typeof attributeValue === typeof type()) === undefined) {
                         console.error(`Свойство: "${key}" со значением`, attributeValue, `не соответствует определяемому типу`, type);
@@ -33,7 +33,7 @@
         return values;
     }
 
-    function setUkOptions(ukComponentOptions) {
+    function setUkOptions(ukComponentOptions = Object) {
         let string = '';
 
         for (const key in ukComponentOptions) {

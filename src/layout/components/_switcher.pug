@@ -1,0 +1,39 @@
+//- https://getuikit.com/docs/switcher#component-options
+
+mixin Switcher
+	-
+		const { tabItemsSet, onlyHTML, 
+			connect, toggle, active, animation, duration, swiping } = Component(attributes, {
+
+			tabItemsSet: { type: Array, required: true },
+
+			onlyHTML: { type: Boolean, default: false },
+
+			connect: { type: String, defaultValue: '~.uk-switcher' },
+
+			toggle: { type: String, defaultValue: '> * > :first-child' },
+
+			active: { type: Number, defaultValue: 0 },
+
+			animation: { type: String, defaultValue: false },  //- 'uk-animation-slide-left-small, uk-animation-slide-right-small'
+
+			duration: { type: Number, defaultValue: 200 },
+
+			swiping: { type: Boolean, defaultValue: true },
+
+		})
+
+		if (!onlyHTML) attributes['data-uk-switcher'] = setUkOptions({ connect, toggle, active, animation, duration, swiping }) 
+
+
+	.switcher
+		ul.switcher-tabs&attributes(attributes)
+			each label, index in tabItemsSet
+				li.switcher-tabs__item: a.switcher-tabs__link(href="#")!= label
+
+		ul.switcher-items.uk-switcher
+			block
+
+mixin SwitcherItem
+	li.switcher-item&attributes(attributes)
+		block

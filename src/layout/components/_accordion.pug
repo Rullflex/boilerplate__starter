@@ -19,7 +19,7 @@ mixin Accordion
 
 			content: { type: String, defaultValue: '> .uk-accordion-content' },
 
-			duration: { type: Number, defaultValue: 200 },
+			duration: { type: Number, default: 250 },
 
 			multiple: { type: Boolean, defaultValue: false },
 
@@ -27,7 +27,7 @@ mixin Accordion
 
 			toggle: { type: String, defaultValue: '> .uk-accordion-title' },
 
-			transition: { type: String, defaultValue: 'ease' },
+			transition: { type: String, default: 'cubic-bezier(.6,0,.77,1)' },
 
 			offset: { type: Number, defaultValue: 0 },
 		})
@@ -45,10 +45,8 @@ mixin Accordion
 
 mixin AccordionItem
 	-
-		const { title, content, isOpen } = Component(attributes, {
+		const { title, isOpen } = Component(attributes, {
 			title: { type: String, required: true },
-
-			content: { type: String, required: true },
 
 			isOpen: { type: Boolean, default: false },
 		})
@@ -60,6 +58,6 @@ mixin AccordionItem
 		a.accordion-item__title.uk-accordion-title(href="#")
 			p!= title
 
-			block closeIcon
+			//- block closeIcon
 		.accordion-item__content.uk-accordion-content 
-			p!= content
+			block
