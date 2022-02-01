@@ -36,14 +36,14 @@ mixin Slider
 
 mixin SliderItems
 	-
-		const { containerVisible } = Component(attributes, {
-			containerVisible: {
+		const { overflowVisible } = Component(attributes, {
+			overflowVisible: {
 				type: Boolean,
 				default: false,
 			},
 		})
 
-	.slider__container.uk-slider-container(class = containerVisible && 'slider__container--visible')
+	.slider__container.uk-slider-container(class = overflowVisible && 'slider__container--visible')
 		ul.slider-items.uk-slider-items&attributes(attributes)
 			block
 
